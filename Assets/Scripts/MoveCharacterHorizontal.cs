@@ -51,14 +51,8 @@ public class MoveCharacterHorizontal : MonoBehaviour
             this.InputDirection = -1.0f;
         }
 
-        if (Input.GetButtonUp("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
+        if (this.CurrentPhase == Phase.Sustain && !Input.GetButton("Horizontal"))
         {
-            this.InputDirection = 1.0f;
-            this.CurrentPhase = Phase.Release;
-        }
-        else if (Input.GetButtonUp("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
-        {
-            this.InputDirection = -1.0f;
             this.CurrentPhase = Phase.Release;
         }
 
