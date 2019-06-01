@@ -7,6 +7,7 @@ public class HeroController : MonoBehaviour
 {
     public IHeroCommand Right;
     public IHeroCommand Left;
+    private bool ground;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +17,23 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") > 0.01)
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
         {
-            this.Right.Execute(this.gameObject);
-        }
-        else if (Input.GetAxis("Horizontal") < -0.01)
-        {
-            this.Left.Execute(this.gameObject);
+            ground = true;
         }
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            ground = false;
+        }
+    }
+
 }
