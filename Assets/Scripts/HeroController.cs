@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Hero.Command;
 
 public class HeroController : MonoBehaviour
 {
     public bool ground;
     public bool cooling;
-    public int health = 10;
+    private bool dead = false;
     private float DamageCoolDown = 1f;
     private float Counter = 0;
+    private int Health = 10;
     private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -20,11 +22,34 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Health);
+        noRotation();
+        hitCoolDown();
+
+        if (Health <= 0 && !dead)
+        {
+            dead = true;
+            playerDeath();
+        }
+
+        ground = false;
+    }
+
+    void playerDeath()
+    {
+        Destroy(this.gameObject);
+    }       
+
+    void noRotation()
+    {
         if (this.transform.rotation != new Quaternion(0, 0, 0, 0))
         {
             this.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
+    }
 
+    void hitCoolDown()
+    {
         if (cooling)
         {
             Counter += Time.deltaTime;
@@ -34,22 +59,19 @@ public class HeroController : MonoBehaviour
                 Counter = 0;
             }
         }
-        Debug.Log(health);
-        ground = false;
     }
 
     void playerHit(GameObject enemy)
     {
         if (enemy.tag == "skeleton")
         {
-            health = health - 1;
+            Health = Health - 1;
             cooling = true;
         }
     }
 
     void playerKnock(GameObject enemy)
     {
-        Debug.Log("here");
         var enemyLocation = enemy.transform.position;
         float xKnock = 7f;
 

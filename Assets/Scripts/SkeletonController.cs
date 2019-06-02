@@ -20,6 +20,10 @@ public class SkeletonController : MonoBehaviour
         {
             this.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
+        if (player == null)
+        {
+            return;
+        }
         counter = counter + Time.deltaTime;
         if (counter > waitTime)
         {
