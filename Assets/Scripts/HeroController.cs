@@ -36,31 +36,21 @@ public class HeroController : MonoBehaviour
             }
         }
         Debug.Log(health);
+        ground = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             ground = true;
         }
-    }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy" && cooling == false)
+        if ((collision.gameObject.tag == "enemy" || collision.gameObject.tag == "skeleton")
+            && cooling == false)
         {
             health = health - 1;
             cooling = true;
         }
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            ground = false;
-        }
-    }
-
 }

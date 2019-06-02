@@ -16,6 +16,10 @@ public class SkeletonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.transform.rotation != new Quaternion(0, 0, 0, 0))
+        {
+            this.transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
         counter = counter + Time.deltaTime;
         if (counter > waitTime)
         {
