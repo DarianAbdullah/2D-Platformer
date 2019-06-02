@@ -8,7 +8,6 @@ public class HeroController : MonoBehaviour
 {
     public bool ground;
     public bool cooling;
-    private bool dead = false;
     private float DamageCoolDown = 1f;
     private float Counter = 0;
     private int Health = 10;
@@ -26,9 +25,8 @@ public class HeroController : MonoBehaviour
         noRotation();
         hitCoolDown();
 
-        if (Health <= 0 && !dead)
+        if (Health <= 0)
         {
-            dead = true;
             playerDeath();
         }
 
