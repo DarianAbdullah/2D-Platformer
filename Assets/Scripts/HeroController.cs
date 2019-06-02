@@ -36,6 +36,7 @@ public class HeroController : MonoBehaviour
             }
         }
         Debug.Log(health);
+        ground = false;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
