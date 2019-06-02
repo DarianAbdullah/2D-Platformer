@@ -7,7 +7,7 @@ public class HeroController : MonoBehaviour
 {
     public IHeroCommand Right;
     public IHeroCommand Left;
-    private bool ground;
+    public bool ground;
     // Start is called before the first frame update
     void Start()
     {

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MoveCharacter : MonoBehaviour
 {
-    [SerializeField] private float Speed = 5.0f;
+    [SerializeField] private float HorizontalSpeed = 5.0f;
+    [SerializeField] private float JumpStrength = 7.0f;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -18,17 +19,28 @@ public class MoveCharacter : MonoBehaviour
 
     [SerializeField] private float ReleaseDuration = 0.25f;
     [SerializeField] private AnimationCurve ReleaseCurve;
-    private float ReleaseTimer = 0.0f;
 
+    private HeroController heroController;
+    private Rigidbody2D heroRigidBody;
+
+    private float ReleaseTimer = 0.0f;
     private float InputDirection = 0.0f;
 
     private enum Phase { Attack, Decay, Sustain, Release, None };
 
     private Phase CurrentPhase = Phase.None;
 
+    private void Start()
+    {
+        this.heroController = this.gameObject.GetComponent<HeroController>();
+        this.heroRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        var position = this.gameObject.transform.position;
+
         if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
             this.ResetTimers();
@@ -58,9 +70,17 @@ public class MoveCharacter : MonoBehaviour
 
         if (this.CurrentPhase != Phase.None)
         {
-            var position = this.gameObject.transform.position;
-            position.x += this.InputDirection * this.Speed * this.ADSREnvelope() * Time.deltaTime;
+            position.x += this.InputDirection * this.HorizontalSpeed * this.ADSREnvelope() * Time.deltaTime;
             this.gameObject.transform.position = position;
+        }
+
+        Debug.Log(heroController.ground);
+        if (heroController.ground)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                heroRigidBody.velocity += Vector2.up * this.JumpStrength;
+            }
         }
     }
 
