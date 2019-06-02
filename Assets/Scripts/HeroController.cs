@@ -17,7 +17,10 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (this.transform.rotation != new Quaternion(0, 0, 0, 0))
+        {
+            this.transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
