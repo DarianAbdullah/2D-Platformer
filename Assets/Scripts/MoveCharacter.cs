@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MoveCharacter : MonoBehaviour
 {
-    [SerializeField] private float HorizontalSpeed = 5.0f;
-    [SerializeField] private float JumpStrength = 7.0f;
+    [SerializeField] private float HorizontalSpeed = 7.0f;
+    [SerializeField] private float JumpStrength = 15.0f;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -74,7 +74,6 @@ public class MoveCharacter : MonoBehaviour
             this.gameObject.transform.position = position;
         }
 
-        Debug.Log(heroController.ground);
         if (heroController.ground)
         {
             if (Input.GetButtonDown("Jump"))
