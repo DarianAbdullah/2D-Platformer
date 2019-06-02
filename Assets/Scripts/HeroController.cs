@@ -5,17 +5,16 @@ using Hero.Command;
 
 public class HeroController : MonoBehaviour
 {
-    public IHeroCommand Right;
-    public IHeroCommand Left;
     public bool ground;
     public bool cooling;
     public int health = 10;
-    private float damageCoolDown = 1f;
-    private float counter = 0;
+    private float DamageCoolDown = 1f;
+    private float Counter = 0;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -28,15 +27,38 @@ public class HeroController : MonoBehaviour
 
         if (cooling)
         {
-            counter += Time.deltaTime;
-            if (counter > damageCoolDown)
+            Counter += Time.deltaTime;
+            if (Counter > DamageCoolDown)
             {
                 cooling = false;
-                counter = 0;
+                Counter = 0;
             }
         }
         Debug.Log(health);
         ground = false;
+    }
+
+    void playerHit(GameObject enemy)
+    {
+        if (enemy.tag == "skeleton")
+        {
+            health = health - 1;
+            cooling = true;
+        }
+    }
+
+    void playerKnock(GameObject enemy)
+    {
+        Debug.Log("here");
+        var enemyLocation = enemy.transform.position;
+        float xKnock = 7f;
+
+        if (enemyLocation.x > this.transform.position.x)
+        {
+            xKnock = -7f;
+        }
+        var knockVector = new Vector2(xKnock, 7f);
+        rb.velocity = knockVector;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -49,8 +71,8 @@ public class HeroController : MonoBehaviour
         if ((collision.gameObject.tag == "enemy" || collision.gameObject.tag == "skeleton")
             && cooling == false)
         {
-            health = health - 1;
-            cooling = true;
+            playerHit(collision.gameObject);
+            playerKnock(collision.gameObject);
         }
     }
 }

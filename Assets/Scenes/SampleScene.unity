@@ -3015,7 +3015,7 @@ GameObject:
   - component: {fileID: 2007184781}
   m_Layer: 0
   m_Name: skeleton
-  m_TagString: Untagged
+  m_TagString: skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3175,7 +3175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7381a4e7483e7fe46abf7d2eed92693a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 465685719}
 --- !u!1 &2009351129
 GameObject:
   m_ObjectHideFlags: 0
