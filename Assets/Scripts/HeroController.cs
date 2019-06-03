@@ -35,5 +35,4 @@ public class HeroController : MonoBehaviour
             ground = false;
         }
     }
-
 }

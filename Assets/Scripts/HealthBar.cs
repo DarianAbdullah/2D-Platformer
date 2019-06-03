@@ -10,12 +10,11 @@ public class HealthBar : MonoBehaviour
     private float CurrentHealth;
     private float MaxHealth;
     [SerializeField] private Slider MyHealthBar;
-    [SerializeField] private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        MaxHealth = player.GetComponent<HeroController>().GetHealth();
+        MaxHealth = 10;
         CurrentHealth = MaxHealth;
         MyHealthBar.value = CalculateHealthBar();
     }
