@@ -28,7 +28,6 @@ public class HeroController : MonoBehaviour
         {
             playerDeath();
         }
-        Debug.Log(ground);
     }
 
     public int GetHealth()

@@ -6,7 +6,7 @@ using Hero.Command;
 public class MoveCharacter : MonoBehaviour
 {
     [SerializeField] private float Speed = 5.0f;
-    [SerializeField] private float JumpStrength = 5.0f;
+    [SerializeField] private float JumpStrength;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -103,7 +103,6 @@ public class MoveCharacter : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
-                Debug.Log("Jump");
                 heroRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
         }
