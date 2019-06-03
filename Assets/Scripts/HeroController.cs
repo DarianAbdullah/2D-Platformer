@@ -95,4 +95,9 @@ public class HeroController : MonoBehaviour
             playerKnock(collision.gameObject);
         }
     }
+
+    public float GetHealth()
+    {
+        return Health;
+    }
 }
