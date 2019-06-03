@@ -7,6 +7,7 @@ public class MoveCharacter : MonoBehaviour
 {
     [SerializeField] private float Speed = 5.0f;
     [SerializeField] private float JumpStrength;
+    [SerializeField] AudioSource JumpAudio;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -103,6 +104,7 @@ public class MoveCharacter : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
+                JumpAudio.Play(0);
                 heroRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
         }

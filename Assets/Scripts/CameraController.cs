@@ -11,13 +11,13 @@ public class CameraController : MonoBehaviour
     {
         Camera = this.gameObject.GetComponent<Camera>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-     var camPos = Camera.transform.position;
-     camPos.x = target.gameObject.transform.position.x;
-     //camPos.y = target.gameObject.transform.position.y;
-     Camera.transform.position = camPos;
+        var camPos = Camera.transform.position;
+        if (target != null)
+        {
+            camPos.x = target.gameObject.transform.position.x;
+        }
+        Camera.transform.position = camPos;
     }
 }

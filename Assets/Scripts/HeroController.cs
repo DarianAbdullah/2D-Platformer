@@ -8,11 +8,15 @@ public class HeroController : MonoBehaviour
 {
     public bool ground;
     public bool cooling = false;
+    public bool dead = false;
     private float DamageCoolDown = 1f;
     private float Counter = 0;
     private int Health = 10;
     private Rigidbody2D rb;
     [SerializeField] AudioSource StepAudio;
+    [SerializeField] AudioSource HurtAudio;
+    [SerializeField] AudioSource LandAudio;
+    [SerializeField] AudioSource DeathAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +41,15 @@ public class HeroController : MonoBehaviour
 
     void playerDeath()
     {
-        Destroy(this.gameObject);
+        if (!dead)
+        {
+            DeathAudio.Play(0);
+            dead = true;
+        }
+        if (!DeathAudio.isPlaying)
+        {
+            Destroy(this.gameObject);
+        } 
     }       
 
     void hitCoolDown()
@@ -55,6 +67,7 @@ public class HeroController : MonoBehaviour
 
     void playerHit(GameObject enemy)
     {
+        HurtAudio.Play(0);
         if (enemy.tag == "skeleton")
         {
             Health = Health - 1;
@@ -95,7 +108,7 @@ public class HeroController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             ground = true;
-            StepAudio.Play(0);
+            LandAudio.Play(0);
         }
     }
 
