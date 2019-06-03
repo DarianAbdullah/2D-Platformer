@@ -288,7 +288,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8125, y: 2.5}
+    oldSize: {x: 1.8125, y: 2.5625}
     newSize: {x: 1.8125, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -381,7 +381,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  SustainDuration: 0.25
   SustainCurve:
     serializedVersion: 2
     m_Curve:
@@ -431,6 +430,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  animator: {fileID: 465685722}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

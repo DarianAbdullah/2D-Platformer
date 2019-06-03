@@ -26,17 +26,28 @@ public class MoveCharacter : MonoBehaviour
 
     private Phase CurrentPhase = Phase.None;
 
+    // Darian's changes
+    public Animator animator;
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
+            // Darian's change
+            animator.SetFloat("Speed", 1);
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
             this.ResetTimers();
             this.CurrentPhase = Phase.Attack;
             this.InputDirection = 1.0f;
         }
         else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
         {
+            // Darian's change
+            animator.SetFloat("Speed", 1);
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
             this.ResetTimers();
             this.CurrentPhase = Phase.Attack;
             this.InputDirection = -1.0f;
@@ -44,10 +55,18 @@ public class MoveCharacter : MonoBehaviour
 
         if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
+            // Darian's change
+            animator.SetFloat("Speed", 1);
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
             this.InputDirection = 1.0f;
         }
         else if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
         {
+            // Darian's change
+            animator.SetFloat("Speed", 1);
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
             this.InputDirection = -1.0f;
         }
 
@@ -96,6 +115,9 @@ public class MoveCharacter : MonoBehaviour
             this.ReleaseTimer += Time.deltaTime;
             if (this.ReleaseTimer > this.ReleaseDuration)
             {
+                // Darian's change
+                animator.SetFloat("Speed", 0);
+
                 this.CurrentPhase = Phase.None;
             }
         }
