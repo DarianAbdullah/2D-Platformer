@@ -83,6 +83,11 @@ public class HeroController : MonoBehaviour
             playerHit(collision.gameObject);
             playerKnock(collision.gameObject);
         }
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            ground = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -90,6 +95,7 @@ public class HeroController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             ground = true;
+            StepAudio.Play(0);
         }
     }
 
