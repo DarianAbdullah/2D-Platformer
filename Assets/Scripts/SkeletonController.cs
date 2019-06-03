@@ -11,6 +11,7 @@ public class SkeletonController : MonoBehaviour
     private Rigidbody2D SkeletonRigidBody;
     [SerializeField] GameObject player;
     [SerializeField] private float JumpStrength;
+    [SerializeField] AudioSource StepSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,14 +31,20 @@ public class SkeletonController : MonoBehaviour
             var position = this.gameObject.transform.position;
             var heroPos = player.transform.position.x;
             float direction = 0f;
-            if (heroPos > position.x)
+            if (heroPos > position.x + 0.3f || heroPos > position.x - 0.3f)
             {
                 direction = 1f;
                 gameObject.GetComponent<SpriteRenderer>().flipX = true;
             }
-            else
+
+            else if (heroPos < position.x + 0.3f || heroPos < position.x - 0.3f)
             {
                 direction = -1f;
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                direction = 0f;
                 gameObject.GetComponent<SpriteRenderer>().flipX = false;
             }
             position.x += direction * 2f * Time.deltaTime;
@@ -67,6 +74,14 @@ public class SkeletonController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             ground = false;
+        }
+    }
+
+    void PlayStepAudio()
+    {
+        if (ground)
+        {
+            StepSound.Play(0);
         }
     }
 }

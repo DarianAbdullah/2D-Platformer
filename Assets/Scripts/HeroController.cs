@@ -12,6 +12,7 @@ public class HeroController : MonoBehaviour
     private float Counter = 0;
     private int Health = 10;
     private Rigidbody2D rb;
+    [SerializeField] AudioSource StepAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +98,14 @@ public class HeroController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             ground = false;
+        }
+    }
+
+    void PlayStepAudio()
+    {
+        if (ground)
+        {
+            StepAudio.Play(0);
         }
     }
 }
