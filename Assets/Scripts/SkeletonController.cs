@@ -55,7 +55,6 @@ public class SkeletonController : MonoBehaviour
 
         if (collision.gameObject.tag == "wall")
         {
-            Debug.Log("hi");
             if (ground)
             {
                     SkeletonRigidBody.velocity += Vector2.up * this.JumpStrength;

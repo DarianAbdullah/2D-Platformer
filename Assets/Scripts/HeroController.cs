@@ -21,7 +21,6 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ground = false;
         hitCoolDown();
 
         if (Health <= 0)
