@@ -9,6 +9,7 @@ public class HeroController : MonoBehaviour
     public bool ground;
     public bool cooling = false;
     public bool dead = false;
+    public string weapon = "sword";
     private float DamageCoolDown = 1f;
     private float Counter = 0;
     private int Health = 10;
@@ -17,15 +18,35 @@ public class HeroController : MonoBehaviour
     [SerializeField] AudioSource HurtAudio;
     [SerializeField] AudioSource LandAudio;
     [SerializeField] AudioSource DeathAudio;
+    [SerializeField] AudioSource SwordAudio;
+    [SerializeField] GameObject SwordHitBox;
+    private PolygonCollider2D SwordCollider;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        SwordCollider = SwordHitBox.GetComponent<PolygonCollider2D>();
+        SwordCollider.enabled = false;
+        //this.gameObject.GetComponent<SwordAttack>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            var attack = this.gameObject.GetComponent<SwordAttack>();
+            SwordAudio.Play(0);
+            if (!this.gameObject.GetComponent<SpriteRenderer>().flipX)
+            {
+                attack.Enable();
+            }
+            else
+            {
+                attack.EnableRev();
+            }
+            
+        }
         hitCoolDown();
 
         if (Health <= 0)

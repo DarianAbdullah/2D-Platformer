@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class SkeletonController : MonoBehaviour
 {
-    private float waitTime = 0.5f;
-    private float counter = 0;
-    private bool ground;
-    private int health = 5;
+    private float WaitTime = 0.5f;
+    private float Counter = 0;
+    private bool Ground;
+    private int Health = 5;
+    private bool Dead = false;
     private Rigidbody2D SkeletonRigidBody;
     [SerializeField] GameObject player;
     [SerializeField] private float JumpStrength;
-    [SerializeField] AudioSource StepSound;
+    [SerializeField] AudioSource StepAudio;
+    [SerializeField] AudioSource HurtAudio;
+    [SerializeField] AudioSource DeathAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +28,8 @@ public class SkeletonController : MonoBehaviour
         {
             return;
         }
-        counter = counter + Time.deltaTime;
-        if (counter > waitTime)
+        Counter = Counter + Time.deltaTime;
+        if (Counter > WaitTime)
         {
             var position = this.gameObject.transform.position;
             var heroPos = player.transform.position.x;
@@ -50,14 +53,54 @@ public class SkeletonController : MonoBehaviour
             position.x += direction * 2f * Time.deltaTime;
             this.gameObject.transform.position = position;
         }
+        if (Health <= 0)
+        {
+            SkeletonDeath();
+        }
         
+    }
+
+    void SkeletonDeath()
+    {
+        if (!Dead)
+        {
+            DeathAudio.Play(0);
+            Dead = true;
+        }
+        if (!DeathAudio.isPlaying)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void SkeletonHit(string weapon)
+    {
+        HurtAudio.Play(0);
+        if (weapon == "sword")
+        {
+            Health = Health - 2;
+        }
+        
+    }
+
+    public void SkeletonKnock(GameObject enemy)
+    {
+        var enemyLocation = enemy.transform.position;
+        float xKnock = 3f;
+
+        if (enemyLocation.x > this.transform.position.x)
+        {
+            xKnock = -3f;
+        }
+        var knockVector = new Vector2(xKnock, 7f);
+        SkeletonRigidBody.velocity = knockVector;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
-            ground = true;
+            Ground = true;
         }
     }
 
@@ -65,12 +108,12 @@ public class SkeletonController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            ground = true;
+            Ground = true;
         }
 
         if (collision.gameObject.tag == "wall")
         {
-            if (ground)
+            if (Ground)
             {
                     SkeletonRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
@@ -81,15 +124,15 @@ public class SkeletonController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            ground = false;
+            Ground = false;
         }
     }
 
     void PlayStepAudio()
     {
-        if (ground)
+        if (Ground)
         {
-            StepSound.Play(0);
+            StepAudio.Play(0);
         }
     }
 }
