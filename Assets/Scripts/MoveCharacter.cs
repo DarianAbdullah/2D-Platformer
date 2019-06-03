@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Hero.Command;
 
 public class MoveCharacter : MonoBehaviour
 {
     [SerializeField] private float Speed = 5.0f;
+    [SerializeField] private float JumpStrength = 5.0f;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -18,6 +20,10 @@ public class MoveCharacter : MonoBehaviour
 
     [SerializeField] private float ReleaseDuration = 0.25f;
     [SerializeField] private AnimationCurve ReleaseCurve;
+
+    private HeroController heroController;
+    private Rigidbody2D heroRigidBody;
+
     private float ReleaseTimer = 0.0f;
 
     private float InputDirection = 0.0f;
@@ -28,6 +34,13 @@ public class MoveCharacter : MonoBehaviour
 
     // Darian's changes
     public Animator animator;
+
+    void Start()
+    {
+        this.heroController = this.gameObject.GetComponent<HeroController>();
+        this.heroRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -70,7 +83,12 @@ public class MoveCharacter : MonoBehaviour
             this.InputDirection = -1.0f;
         }
 
-        if (this.CurrentPhase == Phase.Sustain && !Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") == 0)
+        {
+            this.InputDirection = 0f;
+        }
+
+            if (this.CurrentPhase == Phase.Sustain && !Input.GetButton("Horizontal"))
         {
             this.CurrentPhase = Phase.Release;
         }
@@ -80,6 +98,14 @@ public class MoveCharacter : MonoBehaviour
             var position = this.gameObject.transform.position;
             position.x += this.InputDirection * this.Speed * this.ADSREnvelope() * Time.deltaTime;
             this.gameObject.transform.position = position;
+        }
+        if (heroController.ground)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                Debug.Log("Jump");
+                heroRigidBody.velocity += Vector2.up * this.JumpStrength;
+            }
         }
     }
 
