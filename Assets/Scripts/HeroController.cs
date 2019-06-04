@@ -25,6 +25,10 @@ public class HeroController : MonoBehaviour
     private AudioSource DeathAudio;
     private AudioSource SwordAudio;
     private AudioSource JumpAudio;
+
+    // Darian's change
+    public bool IsAttacking;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +48,9 @@ public class HeroController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && !AttackCooling)
         {
+            // Darian's change
+            IsAttacking = true;
+
             AttackCooling = true;
             var attack = this.gameObject.GetComponent<SwordAttack>();
             SwordAudio.Play(0);
@@ -109,6 +116,9 @@ public class HeroController : MonoBehaviour
             AttackCounter += Time.deltaTime;
             if (AttackCounter > DamageCoolDown)
             {
+                // Darian's change
+                IsAttacking = false;
+
                 AttackCooling = false;
                 AttackCounter = 0;
             }
