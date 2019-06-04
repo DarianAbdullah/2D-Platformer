@@ -6,7 +6,7 @@ using Hero.Command;
 public class MoveCharacter : MonoBehaviour
 {
     [SerializeField] private float Speed = 5.0f;
-    [SerializeField] private float JumpStrength = 5.0f;
+    [SerializeField] private float JumpStrength;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -37,6 +37,7 @@ public class MoveCharacter : MonoBehaviour
 
     void Start()
     {
+        
         this.heroController = this.gameObject.GetComponent<HeroController>();
         this.heroRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
     }
@@ -103,10 +104,19 @@ public class MoveCharacter : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
-                Debug.Log("Jump");
                 heroRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
         }
+    }
+
+    public float GetSpeed()
+    {
+        return this.Speed * animator.GetFloat("Speed");
+    }
+
+    public bool GetXDirection()
+    {
+        return gameObject.GetComponent<SpriteRenderer>().flipX;
     }
 
     float ADSREnvelope()

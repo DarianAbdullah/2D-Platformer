@@ -8,27 +8,67 @@ public class HeroController : MonoBehaviour
 {
     public bool ground;
     public bool cooling = false;
+    private bool AttackCooling = false;
+    public bool dead = false;
+    public string weapon = "sword";
     private float DamageCoolDown = 1f;
+    private float AttackCoolDown = 0.5f;
     private float Counter = 0;
+    private float AttackCounter = 0;
     private int Health = 10;
     private Rigidbody2D rb;
+    private HealthBar PlayerHealthBar;
+    public AudioSource[] audioSources;
+    private AudioSource StepAudio;
+    private AudioSource HurtAudio;
+    private AudioSource LandAudio;
+    private AudioSource DeathAudio;
+    private AudioSource SwordAudio;
+    private AudioSource JumpAudio;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        PlayerHealthBar = GetComponent<HealthBar>();
+        audioSources = GetComponents<AudioSource>();
+        StepAudio = audioSources[0];
+        HurtAudio = audioSources[1];
+        LandAudio = audioSources[2];
+        DeathAudio = audioSources[3];
+        SwordAudio = audioSources[4];
+        JumpAudio = audioSources[5];
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ground = false;
+        if (Input.GetButtonDown("Fire1") && !AttackCooling)
+        {
+            AttackCooling = true;
+            var attack = this.gameObject.GetComponent<SwordAttack>();
+            SwordAudio.Play(0);
+            if (!this.gameObject.GetComponent<SpriteRenderer>().flipX)
+            {
+                attack.Enable();
+            }
+            else
+            {
+                attack.EnableRev();
+            }
+        }
+
+        if (ground && Input.GetButtonDown("Jump"))
+        {
+            JumpAudio.Play(0);
+        }
+
         hitCoolDown();
+        AttackCool();
 
         if (Health <= 0)
         {
             playerDeath();
         }
-        Debug.Log(ground);
     }
 
     public int GetHealth()
@@ -38,7 +78,15 @@ public class HeroController : MonoBehaviour
 
     void playerDeath()
     {
-        Destroy(this.gameObject);
+        if (!dead)
+        {
+            DeathAudio.Play(0);
+            dead = true;
+        }
+        if (!DeathAudio.isPlaying)
+        {
+            Destroy(this.gameObject);
+        } 
     }       
 
     void hitCoolDown()
@@ -54,8 +102,22 @@ public class HeroController : MonoBehaviour
         }
     }
 
+    void AttackCool()
+    {
+        if (AttackCooling)
+        {
+            AttackCounter += Time.deltaTime;
+            if (AttackCounter > DamageCoolDown)
+            {
+                AttackCooling = false;
+                AttackCounter = 0;
+            }
+        }
+    }
+
     void playerHit(GameObject enemy)
     {
+        HurtAudio.Play(0);
         if (enemy.tag == "skeleton")
         {
             Health = Health - 1;
@@ -84,6 +146,11 @@ public class HeroController : MonoBehaviour
             playerHit(collision.gameObject);
             playerKnock(collision.gameObject);
         }
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            ground = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -91,6 +158,7 @@ public class HeroController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             ground = true;
+            LandAudio.Play(0);
         }
     }
 
@@ -99,6 +167,14 @@ public class HeroController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             ground = false;
+        }
+    }
+
+    void PlayStepAudio()
+    {
+        if (ground)
+        {
+            StepAudio.Play(0);
         }
     }
 }
