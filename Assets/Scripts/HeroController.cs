@@ -14,19 +14,17 @@ public class HeroController : MonoBehaviour
     private float Counter = 0;
     private int Health = 10;
     private Rigidbody2D rb;
+    private HealthBar PlayerHealthBar;
     [SerializeField] AudioSource StepAudio;
     [SerializeField] AudioSource HurtAudio;
     [SerializeField] AudioSource LandAudio;
     [SerializeField] AudioSource DeathAudio;
     [SerializeField] AudioSource SwordAudio;
-    [SerializeField] GameObject SwordHitBox;
-    private PolygonCollider2D SwordCollider;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        SwordCollider = SwordHitBox.GetComponent<PolygonCollider2D>();
-        SwordCollider.enabled = false;
+        PlayerHealthBar = GetComponent<HealthBar>();
     }
 
     // Update is called once per frame
