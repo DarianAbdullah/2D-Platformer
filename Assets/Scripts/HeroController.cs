@@ -27,7 +27,6 @@ public class HeroController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         SwordCollider = SwordHitBox.GetComponent<PolygonCollider2D>();
         SwordCollider.enabled = false;
-        //this.gameObject.GetComponent<SwordAttack>();
     }
 
     // Update is called once per frame

@@ -711,7 +711,7 @@ MonoBehaviour:
   LandAudio: {fileID: 1400114619}
   DeathAudio: {fileID: 27439380}
   SwordAudio: {fileID: 1947244391}
-  SwordHitBox: {fileID: 1737678360}
+  SwordHitBox: {fileID: 0}
 --- !u!114 &465685727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,7 +1014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f8b8e5d40cd4d4fbdf61c9c559aa46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 465685719}
+  Target: {fileID: 465685719}
+  LerpDuration: 10
+  LeadSpeed: 1
 --- !u!1 &714850991
 GameObject:
   m_ObjectHideFlags: 0

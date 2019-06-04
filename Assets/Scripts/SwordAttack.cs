@@ -17,13 +17,13 @@ public class SwordAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (SwordCollider.enabled)
         {
             var contacts = new Collider2D[32];
             this.SwordCollider.GetContacts(contacts);
             foreach (var col in contacts)
             {
-
                 if (col != null && col.gameObject != null && col.gameObject.tag == "skeleton")
                 {
                     var doer = col.gameObject.GetComponent<SkeletonController>();

@@ -110,6 +110,16 @@ public class MoveCharacter : MonoBehaviour
         }
     }
 
+    public float GetSpeed()
+    {
+        return this.Speed * animator.GetFloat("Speed");
+    }
+
+    public bool GetXDirection()
+    {
+        return gameObject.GetComponent<SpriteRenderer>().flipX;
+    }
+
     float ADSREnvelope()
     {
         float value = 0.0f;
