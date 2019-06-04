@@ -34,10 +34,12 @@ public class MoveCharacter : MonoBehaviour
 
     // Darian's changes
     public Animator animator;
+    public bool IsMoving;
+    public bool IsJumping;
+    public bool IsCrouching;
 
     void Start()
     {
-        
         this.heroController = this.gameObject.GetComponent<HeroController>();
         this.heroRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
     }
@@ -46,10 +48,17 @@ public class MoveCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (heroController.ground == false)
+        {
+            IsJumping = true;
+        }
+
         if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
-            // Darian's change
-            animator.SetFloat("Speed", 1);
+            // Darian's Change
+            IsMoving = true;
+
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
             this.ResetTimers();
@@ -59,7 +68,7 @@ public class MoveCharacter : MonoBehaviour
         else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
         {
             // Darian's change
-            animator.SetFloat("Speed", 1);
+            IsMoving = true;
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
 
             this.ResetTimers();
@@ -70,7 +79,7 @@ public class MoveCharacter : MonoBehaviour
         if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
             // Darian's change
-            animator.SetFloat("Speed", 1);
+            IsMoving = true;
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
             this.InputDirection = 1.0f;
@@ -78,7 +87,7 @@ public class MoveCharacter : MonoBehaviour
         else if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
         {
             // Darian's change
-            animator.SetFloat("Speed", 1);
+            IsMoving = true;
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
 
             this.InputDirection = -1.0f;
@@ -102,8 +111,10 @@ public class MoveCharacter : MonoBehaviour
         }
         if (heroController.ground)
         {
+            IsJumping = false;
             if (Input.GetButtonDown("Jump"))
             {
+                IsJumping = true;
                 heroRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
         }
@@ -152,7 +163,7 @@ public class MoveCharacter : MonoBehaviour
             if (this.ReleaseTimer > this.ReleaseDuration)
             {
                 // Darian's change
-                animator.SetFloat("Speed", 0);
+                IsMoving = false;
 
                 this.CurrentPhase = Phase.None;
             }

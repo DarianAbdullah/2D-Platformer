@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 465685723}
   - component: {fileID: 465685722}
   - component: {fileID: 465685725}
+  - component: {fileID: 465685734}
   - component: {fileID: 465685726}
   - component: {fileID: 465685727}
   - component: {fileID: 465685728}
@@ -313,7 +314,7 @@ GameObject:
   - component: {fileID: 465685730}
   m_Layer: 0
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -562,6 +563,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animator: {fileID: 465685722}
+  IsMoving: 0
+  IsJumping: 0
+  IsCrouching: 0
 --- !u!114 &465685726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +583,7 @@ MonoBehaviour:
   dead: 0
   weapon: sword
   audioSources: []
+  IsAttacking: 0
 --- !u!114 &465685727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,6 +1174,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &465685734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465685719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1a22739aad00f4fa794031d2ddff53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,8 +1691,8 @@ PolygonCollider2D:
     - - {x: 0.4721222, y: 1.1726539}
       - {x: -0.19710684, y: 0.5867882}
       - {x: -0.19096899, y: -0.8685392}
-      - {x: 1.89746, y: -0.8881705}
-      - {x: 2.2204022, y: 1.179568}
+      - {x: 2.9160886, y: -0.84742475}
+      - {x: 2.872325, y: 1.1388223}
 --- !u!1 &1793062462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,11 +1749,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.8500409, y: 1.1376693}
+    - - {x: -2.86867, y: 1.0969236}
       - {x: 0.48107195, y: 1.1293311}
       - {x: -0.19096899, y: -0.8685392}
-      - {x: -1.9364133, y: -0.84847546}
-      - {x: -1.8941617, y: 0.22964746}
+      - {x: -2.7920623, y: -0.8892212}
+      - {x: -2.8313012, y: 0.22964746}
 --- !u!1 &1866086710
 GameObject:
   m_ObjectHideFlags: 0
