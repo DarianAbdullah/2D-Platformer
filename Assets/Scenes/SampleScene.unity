@@ -304,8 +304,8 @@ GameObject:
   - component: {fileID: 465685722}
   - component: {fileID: 465685725}
   - component: {fileID: 465685734}
-  - component: {fileID: 465685726}
   - component: {fileID: 465685727}
+  - component: {fileID: 465685726}
   - component: {fileID: 465685728}
   - component: {fileID: 465685729}
   - component: {fileID: 465685733}
@@ -583,6 +583,7 @@ MonoBehaviour:
   dead: 0
   weapon: sword
   audioSources: []
+  IsAttacking: 0
 --- !u!114 &465685727
 MonoBehaviour:
   m_ObjectHideFlags: 0

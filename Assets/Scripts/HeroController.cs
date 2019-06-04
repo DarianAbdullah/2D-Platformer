@@ -11,7 +11,7 @@ public class HeroController : MonoBehaviour
     private bool AttackCooling = false;
     public bool dead = false;
     public string weapon = "sword";
-    private float DamageCoolDown = 1f;
+    private float DamageCoolDown = 0.5f;
     private float AttackCoolDown = 0.5f;
     private float Counter = 0;
     private float AttackCounter = 0;
