@@ -26,13 +26,23 @@ public class HealthBar : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.X))
         {
-            DealDamage(1);
+            Heal(1);
         }
     }
 
-    void DealDamage(float damage)
+    public void DealDamage(float damage)
     {
         CurrentHealth -= damage;
+        MyHealthBar.value = CalculateHealthBar();
+    }
+
+    public void Heal(float HealAmount)
+    {
+        CurrentHealth += HealAmount;
+        if(CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
         MyHealthBar.value = CalculateHealthBar();
     }
 

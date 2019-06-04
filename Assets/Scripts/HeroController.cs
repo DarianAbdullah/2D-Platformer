@@ -12,10 +12,12 @@ public class HeroController : MonoBehaviour
     private float Counter = 0;
     private int Health = 10;
     private Rigidbody2D rb;
+    private HealthBar PlayerHealthBar;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        PlayerHealthBar = GetComponent<HealthBar>();
     }
 
     // Update is called once per frame
@@ -59,6 +61,7 @@ public class HeroController : MonoBehaviour
         if (enemy.tag == "skeleton")
         {
             Health = Health - 1;
+            PlayerHealthBar.DealDamage(1);
             cooling = true;
         }
     }
