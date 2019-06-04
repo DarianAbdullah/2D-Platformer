@@ -12,12 +12,20 @@ public class SkeletonController : MonoBehaviour
     private Rigidbody2D SkeletonRigidBody;
     [SerializeField] GameObject player;
     [SerializeField] private float JumpStrength;
-    [SerializeField] AudioSource StepAudio;
-    [SerializeField] AudioSource HurtAudio;
-    [SerializeField] AudioSource DeathAudio;
+    public AudioSource[] audioSources;
+    private AudioSource StepAudio;
+    private AudioSource HurtAudio;
+    private AudioSource DeathAudio;
+    private AudioSource SpawnAudio;
     // Start is called before the first frame update
     void Start()
     {
+        audioSources = GetComponents<AudioSource>();
+        StepAudio = audioSources[0];
+        HurtAudio = audioSources[1];
+        DeathAudio = audioSources[2];
+        SpawnAudio = audioSources[3];
+        SpawnAudio.Play(0);
         this.SkeletonRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
