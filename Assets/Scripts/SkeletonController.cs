@@ -16,6 +16,10 @@ public class SkeletonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player == null)
+        {
+            return;
+        }
         counter = counter + Time.deltaTime;
         if (counter > waitTime)
         {

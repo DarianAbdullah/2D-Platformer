@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 64e333ae9d46ef944b31495594b3c865
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - MyHealthBar: {instanceID: 0}
+  - player: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

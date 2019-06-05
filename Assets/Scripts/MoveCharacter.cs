@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Hero.Command;
 
 public class MoveCharacter : MonoBehaviour
 {
-    [SerializeField] private float HorizontalSpeed = 7.0f;
-    [SerializeField] private float JumpStrength = 15.0f;
+    [SerializeField] private float Speed = 5.0f;
+    [SerializeField] private float JumpStrength = 5.0f;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -24,31 +25,42 @@ public class MoveCharacter : MonoBehaviour
     private Rigidbody2D heroRigidBody;
 
     private float ReleaseTimer = 0.0f;
+
     private float InputDirection = 0.0f;
 
     private enum Phase { Attack, Decay, Sustain, Release, None };
 
     private Phase CurrentPhase = Phase.None;
 
-    private void Start()
+    // Darian's changes
+    public Animator animator;
+
+    void Start()
     {
         this.heroController = this.gameObject.GetComponent<HeroController>();
         this.heroRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        var position = this.gameObject.transform.position;
-
         if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
+            // Darian's change
+            animator.SetFloat("Speed", 1);
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
             this.ResetTimers();
             this.CurrentPhase = Phase.Attack;
             this.InputDirection = 1.0f;
         }
         else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
         {
+            // Darian's change
+            animator.SetFloat("Speed", 1);
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
             this.ResetTimers();
             this.CurrentPhase = Phase.Attack;
             this.InputDirection = -1.0f;
@@ -56,28 +68,42 @@ public class MoveCharacter : MonoBehaviour
 
         if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
         {
+            // Darian's change
+            animator.SetFloat("Speed", 1);
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
             this.InputDirection = 1.0f;
         }
         else if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
         {
+            // Darian's change
+            animator.SetFloat("Speed", 1);
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
             this.InputDirection = -1.0f;
         }
 
-        if (this.CurrentPhase == Phase.Sustain && !Input.GetButton("Horizontal"))
+        if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") == 0)
+        {
+            this.InputDirection = 0f;
+        }
+
+            if (this.CurrentPhase == Phase.Sustain && !Input.GetButton("Horizontal"))
         {
             this.CurrentPhase = Phase.Release;
         }
 
         if (this.CurrentPhase != Phase.None)
         {
-            position.x += this.InputDirection * this.HorizontalSpeed * this.ADSREnvelope() * Time.deltaTime;
+            var position = this.gameObject.transform.position;
+            position.x += this.InputDirection * this.Speed * this.ADSREnvelope() * Time.deltaTime;
             this.gameObject.transform.position = position;
         }
-
         if (heroController.ground)
         {
             if (Input.GetButtonDown("Jump"))
             {
+                Debug.Log("Jump");
                 heroRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
         }
@@ -115,6 +141,9 @@ public class MoveCharacter : MonoBehaviour
             this.ReleaseTimer += Time.deltaTime;
             if (this.ReleaseTimer > this.ReleaseDuration)
             {
+                // Darian's change
+                animator.SetFloat("Speed", 0);
+
                 this.CurrentPhase = Phase.None;
             }
         }
