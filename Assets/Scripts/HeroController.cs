@@ -135,13 +135,13 @@ public class HeroController : MonoBehaviour
     void playerKnock(GameObject enemy)
     {
         var enemyLocation = enemy.transform.position;
-        float xKnock = 3f;
+        float xKnock = 6f;
 
         if (enemyLocation.x > this.transform.position.x)
         {
-            xKnock = -3f;
+            xKnock = -6f;
         }
-        var knockVector = new Vector2(xKnock, 7f);
+        var knockVector = new Vector2(xKnock, 12f);
         rb.velocity = knockVector;
     }
 
