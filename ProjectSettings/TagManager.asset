@@ -8,6 +8,7 @@ TagManager:
   - skeleton
   - enemy
   - wall
+  - hell_hound
   layers:
   - Default
   - TransparentFX
