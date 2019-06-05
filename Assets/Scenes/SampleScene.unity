@@ -305,7 +305,6 @@ GameObject:
   - component: {fileID: 465685725}
   - component: {fileID: 465685734}
   - component: {fileID: 465685726}
-  - component: {fileID: 465685727}
   - component: {fileID: 465685728}
   - component: {fileID: 465685729}
   - component: {fileID: 465685733}
@@ -584,20 +583,6 @@ MonoBehaviour:
   weapon: sword
   audioSources: []
   IsAttacking: 0
---- !u!114 &465685727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 465685719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b043fde09fce6e54fa40957f2edf8890, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SwordHitBox: {fileID: 1737678360}
-  SwordHitBoxRev: {fileID: 1793062462}
 --- !u!82 &465685728
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1644,7 +1629,7 @@ GameObject:
   - component: {fileID: 1737678362}
   m_Layer: 0
   m_Name: SwordHitBox
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1673,7 +1658,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1705,7 +1690,7 @@ GameObject:
   - component: {fileID: 1793062464}
   m_Layer: 0
   m_Name: SwordHitBoxRev
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1734,7 +1719,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

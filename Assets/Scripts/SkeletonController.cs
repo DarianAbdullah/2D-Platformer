@@ -63,6 +63,7 @@ public class SkeletonController : MonoBehaviour
         }
         if (Health <= 0)
         {
+            gameObject.layer = 10;
             SkeletonDeath();
         }
         

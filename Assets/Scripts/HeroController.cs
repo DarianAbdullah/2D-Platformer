@@ -6,6 +6,8 @@ using Hero.Command;
 
 public class HeroController : MonoBehaviour
 {
+    private IHeroCommand Attack;
+
     public bool ground;
     public bool cooling = false;
     private bool AttackCooling = false;
@@ -32,6 +34,9 @@ public class HeroController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.gameObject.AddComponent<SwordAttack>();
+        this.Attack = this.gameObject.GetComponent<SwordAttack>();
+
         rb = GetComponent<Rigidbody2D>();
         PlayerHealthBar = GetComponent<HealthBar>();
         audioSources = GetComponents<AudioSource>();
@@ -48,20 +53,12 @@ public class HeroController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && !AttackCooling)
         {
-            // Darian's change
+            //Darian's change
             IsAttacking = true;
 
             AttackCooling = true;
-            var attack = this.gameObject.GetComponent<SwordAttack>();
             SwordAudio.Play(0);
-            if (!this.gameObject.GetComponent<SpriteRenderer>().flipX)
-            {
-                attack.Enable();
-            }
-            else
-            {
-                attack.EnableRev();
-            }
+            this.Attack.Execute(this.gameObject);
         }
 
         if (ground && Input.GetButtonDown("Jump"))
@@ -151,7 +148,7 @@ public class HeroController : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         if ((collision.gameObject.tag == "enemy" || collision.gameObject.tag == "skeleton")
-            && cooling == false)
+            && cooling == false && collision.gameObject.layer != 10)
         {
             playerHit(collision.gameObject);
             playerKnock(collision.gameObject);
