@@ -7,6 +7,8 @@ public class MoveCharacter : MonoBehaviour
 {
     [SerializeField] private float Speed = 5.0f;
     [SerializeField] private float JumpStrength = 5.0f;
+    private float PrevAxis = 0.0f;
+    private bool ButtonPressedSim = false;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -23,6 +25,9 @@ public class MoveCharacter : MonoBehaviour
 
     private HeroController heroController;
     private Rigidbody2D heroRigidBody;
+
+    public bool IsJumping;
+    public bool IsMoving;
 
     private float ReleaseTimer = 0.0f;
 
@@ -45,50 +50,67 @@ public class MoveCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
+        float currAxis = Input.GetAxis("Horizontal");
+        if ((PrevAxis == 0 && currAxis != 0) ||
+            (PrevAxis < 0 && currAxis > 0) ||
+            (PrevAxis > 0 && currAxis < 0))
+        {
+            ButtonPressedSim = true;
+        }
+        else
+        {
+            ButtonPressedSim = false;
+        }
+
+        PrevAxis = currAxis;
+        Debug.Log("GetButton: " + !Input.GetButton("Horizontal"));
+        Debug.Log("Axis: " + (Input.GetAxis("Horizontal") != 0));
+
+        if (ButtonPressedSim && Input.GetAxis("Horizontal") > 0)
         {
             // Darian's change
             animator.SetFloat("Speed", 1);
+            IsMoving = true;
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
             this.ResetTimers();
             this.CurrentPhase = Phase.Attack;
             this.InputDirection = 1.0f;
         }
-        else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
+        else if (ButtonPressedSim && Input.GetAxis("Horizontal") < 0)
         {
             // Darian's change
             animator.SetFloat("Speed", 1);
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
-
+            IsMoving = true;
             this.ResetTimers();
             this.CurrentPhase = Phase.Attack;
             this.InputDirection = -1.0f;
         }
 
-        if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
+        if (ButtonPressedSim && Input.GetAxis("Horizontal") > 0)
         {
             // Darian's change
             animator.SetFloat("Speed", 1);
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
-
+            IsMoving = true;
             this.InputDirection = 1.0f;
         }
-        else if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
+        else if (ButtonPressedSim && Input.GetAxis("Horizontal") < 0)
         {
             // Darian's change
             animator.SetFloat("Speed", 1);
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
-
+            IsMoving = true;
             this.InputDirection = -1.0f;
         }
 
-        if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") == 0)
+        if (ButtonPressedSim && Input.GetAxis("Horizontal") == 0)
         {
             this.InputDirection = 0f;
         }
 
-            if (this.CurrentPhase == Phase.Sustain && !Input.GetButton("Horizontal"))
+        if (this.CurrentPhase == Phase.Sustain && Input.GetAxis("Horizontal") == 0)
         {
             this.CurrentPhase = Phase.Release;
         }
@@ -99,14 +121,33 @@ public class MoveCharacter : MonoBehaviour
             position.x += this.InputDirection * this.Speed * this.ADSREnvelope() * Time.deltaTime;
             this.gameObject.transform.position = position;
         }
+        else
+        {
+            IsMoving = false;
+        }
         if (heroController.ground)
         {
+            IsJumping = false;
             if (Input.GetButtonDown("Jump"))
             {
-                Debug.Log("Jump");
+
                 heroRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
         }
+        else
+        {
+            IsJumping = true;
+        }
+    }
+
+    public float GetSpeed()
+    {
+        return this.Speed * animator.GetFloat("Speed");
+    }
+
+    public bool GetXDirection()
+    {
+        return gameObject.GetComponent<SpriteRenderer>().flipX;
     }
 
     float ADSREnvelope()

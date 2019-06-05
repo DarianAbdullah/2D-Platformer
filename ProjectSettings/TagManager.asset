@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - skeleton
   - enemy
+  - wall
+  - weapon
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Wall
+  - Enemy
+  - Dead
   - 
   - 
   - 

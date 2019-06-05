@@ -6,31 +6,73 @@ using Hero.Command;
 
 public class HeroController : MonoBehaviour
 {
+    private IHeroCommand Attack;
+
     public bool ground;
     public bool cooling = false;
+    private bool AttackCooling = false;
+    public bool dead = false;
+    public string weapon = "sword";
     private float DamageCoolDown = 1f;
+    private float AttackCoolDown = 0.5f;
     private float Counter = 0;
+    private float AttackCounter = 0;
     private int Health = 10;
     private Rigidbody2D rb;
     private HealthBar PlayerHealthBar;
+    public AudioSource[] audioSources;
+    private AudioSource StepAudio;
+    private AudioSource HurtAudio;
+    private AudioSource LandAudio;
+    private AudioSource DeathAudio;
+    private AudioSource SwordAudio;
+    private AudioSource JumpAudio;
+
+    // Darian's change
+    public bool IsAttacking;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.gameObject.AddComponent<SwordAttack>();
+        this.Attack = this.gameObject.GetComponent<SwordAttack>();
+
         rb = GetComponent<Rigidbody2D>();
         PlayerHealthBar = GetComponent<HealthBar>();
+        audioSources = GetComponents<AudioSource>();
+        StepAudio = audioSources[0];
+        HurtAudio = audioSources[1];
+        LandAudio = audioSources[2];
+        DeathAudio = audioSources[3];
+        SwordAudio = audioSources[4];
+        JumpAudio = audioSources[5];
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ground = false;
+        if (Input.GetButtonDown("Fire1") && !AttackCooling)
+        {
+            //Darian's change
+            IsAttacking = true;
+
+            AttackCooling = true;
+            SwordAudio.Play(0);
+            this.Attack.Execute(this.gameObject);
+        }
+
+        if (ground && Input.GetButtonDown("Jump"))
+        {
+            JumpAudio.Play(0);
+        }
+
         hitCoolDown();
+        AttackCool();
 
         if (Health <= 0)
         {
             playerDeath();
         }
-        Debug.Log(ground);
     }
 
     public int GetHealth()
@@ -40,7 +82,15 @@ public class HeroController : MonoBehaviour
 
     void playerDeath()
     {
-        Destroy(this.gameObject);
+        if (!dead)
+        {
+            DeathAudio.Play(0);
+            dead = true;
+        }
+        if (!DeathAudio.isPlaying)
+        {
+            Destroy(this.gameObject);
+        } 
     }       
 
     void hitCoolDown()
@@ -56,12 +106,28 @@ public class HeroController : MonoBehaviour
         }
     }
 
+    void AttackCool()
+    {
+        if (AttackCooling)
+        {
+            AttackCounter += Time.deltaTime;
+            if (AttackCounter > AttackCoolDown)
+            {
+                // Darian's change
+                IsAttacking = false;
+
+                AttackCooling = false;
+                AttackCounter = 0;
+            }
+        }
+    }
+
     void playerHit(GameObject enemy)
     {
+        HurtAudio.Play(0);
         if (enemy.tag == "skeleton")
         {
             Health = Health - 1;
-            PlayerHealthBar.DealDamage(1);
             cooling = true;
         }
     }
@@ -69,23 +135,28 @@ public class HeroController : MonoBehaviour
     void playerKnock(GameObject enemy)
     {
         var enemyLocation = enemy.transform.position;
-        float xKnock = 3f;
+        float xKnock = 6f;
 
         if (enemyLocation.x > this.transform.position.x)
         {
-            xKnock = -3f;
+            xKnock = -6f;
         }
-        var knockVector = new Vector2(xKnock, 7f);
+        var knockVector = new Vector2(xKnock, 12f);
         rb.velocity = knockVector;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if ((collision.gameObject.tag == "enemy" || collision.gameObject.tag == "skeleton")
-            && cooling == false)
+            && cooling == false && collision.gameObject.layer != 10)
         {
             playerHit(collision.gameObject);
             playerKnock(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            ground = true;
         }
     }
 
@@ -94,6 +165,7 @@ public class HeroController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             ground = true;
+            LandAudio.Play(0);
         }
     }
 
@@ -102,6 +174,14 @@ public class HeroController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             ground = false;
+        }
+    }
+
+    void PlayStepAudio()
+    {
+        if (ground)
+        {
+            StepAudio.Play(0);
         }
     }
 }

@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown("return") && counter == 1)
+        if (Input.GetButtonDown("Submit") && counter == 1)
         {
             counter = 0;
             PlayGame();

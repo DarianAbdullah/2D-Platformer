@@ -24,25 +24,17 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CurrentHealth = player.GetComponent<HeroController>().GetHealth();
+        MyHealthBar.value = CalculateHealthBar();
         if(Input.GetKeyDown(KeyCode.X))
         {
-            Heal(1);
+            DealDamage(1);
         }
     }
 
-    public void DealDamage(float damage)
+    void DealDamage(float damage)
     {
         CurrentHealth -= damage;
-        MyHealthBar.value = CalculateHealthBar();
-    }
-
-    public void Heal(float HealAmount)
-    {
-        CurrentHealth += HealAmount;
-        if(CurrentHealth > MaxHealth)
-        {
-            CurrentHealth = MaxHealth;
-        }
         MyHealthBar.value = CalculateHealthBar();
     }
 
