@@ -3598,6 +3598,7 @@ GameObject:
   - component: {fileID: 2007184780}
   - component: {fileID: 2007184779}
   - component: {fileID: 2007184781}
+  - component: {fileID: 2007184782}
   m_Layer: 0
   m_Name: skeleton
   m_TagString: skeleton
@@ -3674,7 +3675,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007184774}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3761,6 +3762,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 465685719}
+--- !u!60 &2007184782
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007184774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.000044822693, y: 1.6000543}
+      - {x: -0.71751595, y: 0.009012699}
+      - {x: -0.38812256, y: -1.6091778}
+      - {x: 0.4186697, y: -1.600038}
+      - {x: 0.7509489, y: 0.009013653}
 --- !u!1 &2009351129
 GameObject:
   m_ObjectHideFlags: 0
