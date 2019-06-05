@@ -7,6 +7,8 @@ public class MoveCharacter : MonoBehaviour
 {
     [SerializeField] private float Speed = 5.0f;
     [SerializeField] private float JumpStrength;
+    private float PrevAxis = 0.0f;
+    private bool ButtonPressedSim;
 
     [SerializeField] private float AttackDuration = 0.25f;
     [SerializeField] private AnimationCurve AttackCurve;
@@ -48,13 +50,29 @@ public class MoveCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float currAxis = Input.GetAxis("Horizontal");
+        if ((PrevAxis == 0 && currAxis != 0) ||
+            (PrevAxis < 0 && currAxis > 0) ||
+            (PrevAxis > 0 && currAxis < 0))
+        {
+            ButtonPressedSim = true;
+        }
+        else
+        {
+            ButtonPressedSim = false;
+        }
+
+        PrevAxis = currAxis;
+        //print(ButtonPressedSim);
+        //Debug.Log("GetButton: " + !Input.GetButton("Horizontal"));
+        //Debug.Log("Axis: " + (Input.GetAxis("Horizontal") != 0));
 
         if (heroController.ground == false)
         {
             IsJumping = true;
         }
 
-        if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
+        if (ButtonPressedSim && Input.GetAxis("Horizontal") > 0)
         {
             // Darian's Change
             IsMoving = true;
@@ -65,7 +83,7 @@ public class MoveCharacter : MonoBehaviour
             this.CurrentPhase = Phase.Attack;
             this.InputDirection = 1.0f;
         }
-        else if (Input.GetButtonDown("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
+        else if (ButtonPressedSim && Input.GetAxis("Horizontal") < 0)
         {
             // Darian's change
             IsMoving = true;
@@ -76,7 +94,7 @@ public class MoveCharacter : MonoBehaviour
             this.InputDirection = -1.0f;
         }
 
-        if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") > 0)
+        if (ButtonPressedSim && Input.GetAxis("Horizontal") > 0)
         {
             // Darian's change
             IsMoving = true;
@@ -84,7 +102,7 @@ public class MoveCharacter : MonoBehaviour
 
             this.InputDirection = 1.0f;
         }
-        else if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") < 0)
+        else if (ButtonPressedSim && Input.GetAxis("Horizontal") < 0)
         {
             // Darian's change
             IsMoving = true;
@@ -93,7 +111,7 @@ public class MoveCharacter : MonoBehaviour
             this.InputDirection = -1.0f;
         }
 
-        if (Input.GetButton("Horizontal") && Input.GetAxisRaw("Horizontal") == 0)
+        if (ButtonPressedSim && Input.GetAxis("Horizontal") == 0)
         {
             this.InputDirection = 0f;
         }

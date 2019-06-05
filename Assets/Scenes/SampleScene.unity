@@ -1466,8 +1466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 465685719}
-  LerpDuration: 10
-  LeadSpeed: 1
+  TopLeft: {x: 0, y: 0, z: 0}
+  BottomRight: {x: 0, y: 0, z: 0}
 --- !u!1 &641420778
 GameObject:
   m_ObjectHideFlags: 0
@@ -4157,7 +4157,7 @@ PolygonCollider2D:
       - {x: -0.3829943, y: 0.04683447}
       - {x: 0.22061145, y: -0.6997738}
       - {x: 2.6633978, y: -0.98380494}
-      - {x: 2.655243, y: 0.8115349}
+      - {x: 2.500133, y: 1.188231}
 --- !u!1 &1969649588
 GameObject:
   m_ObjectHideFlags: 0
@@ -4355,7 +4355,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 1}
-      - {x: -2.2838182, y: 0.74598885}
+      - {x: -2.2838182, y: 0.98973274}
       - {x: -2.2045784, y: -0.8090172}
       - {x: 0.12896526, y: -0.80901694}
       - {x: 0.12081087, y: 0.17792559}
