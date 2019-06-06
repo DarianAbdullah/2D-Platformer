@@ -9,8 +9,9 @@ public class FireSkullController : MonoBehaviour
     private int Health = 1;
     private bool Dead = false;
     [SerializeField] GameObject player;
-    [SerializeField] private float JumpStrength;
-
+    public AudioSource[] audioSources;
+    private AudioSource ExistAudio;
+    private AudioSource DeathAudio;
 
     //Darian's changes
     public bool IsDead;
@@ -19,7 +20,9 @@ public class FireSkullController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSources = GetComponents<AudioSource>();
+        ExistAudio = audioSources[0];
+        DeathAudio = audioSources[1];
 
         // Darian's changes
         animator = GetComponent<Animator>();
@@ -44,9 +47,13 @@ public class FireSkullController : MonoBehaviour
     {
         if (!Dead)
         {
+            DeathAudio.Play(0);
             Dead = true;
             IsDead = true;
             animator.SetBool("IsDead", IsDead);
+        }
+        if (!DeathAudio.isPlaying)
+        {
             Destroy(this.gameObject);
         }
     }
@@ -54,5 +61,6 @@ public class FireSkullController : MonoBehaviour
     public void SkullHit(string weapon)
     {
         SkullDeath();
+        Health = 0;
     }
 }
