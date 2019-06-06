@@ -63,8 +63,8 @@ public class MoveCharacter : MonoBehaviour
         }
 
         PrevAxis = currAxis;
-        Debug.Log("GetButton: " + Input.GetButton("Horizontal"));
-        Debug.Log("Axis: " + (Input.GetAxis("Horizontal") != 0));
+        //Debug.Log("GetButton: " + Input.GetButton("Horizontal"));
+        //Debug.Log("Axis: " + (Input.GetAxis("Horizontal") != 0));
 
         if (ButtonPressedSim && Input.GetAxis("Horizontal") > 0)
         {
@@ -110,7 +110,7 @@ public class MoveCharacter : MonoBehaviour
             this.InputDirection = 0f;
         }
 
-        Debug.Log(this.CurrentPhase);
+        //Debug.Log(this.CurrentPhase);
 
         if (this.CurrentPhase == Phase.Sustain && Input.GetAxis("Horizontal") == 0)
         {

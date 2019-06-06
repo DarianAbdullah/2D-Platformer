@@ -771,9 +771,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7381a4e7483e7fe46abf7d2eed92693a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1766114118}
   JumpStrength: 10
   audioSources: []
+  IsDead: 0
 --- !u!95 &352627208
 Animator:
   serializedVersion: 3
@@ -2013,7 +2014,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -13579,6 +13580,7 @@ MonoBehaviour:
   weapon: sword
   audioSources: []
   IsAttacking: 0
+  IsHurt: 0
 --- !u!114 &1766114126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13616,7 +13618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c331a49583018461d88e5810cebf74c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 8
   JumpStrength: 10
   AttackDuration: 0.2
   AttackCurve:
@@ -13956,7 +13958,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
