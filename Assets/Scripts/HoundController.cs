@@ -7,7 +7,7 @@ public class HoundController : MonoBehaviour
     private float WaitTime = 0.5f;
     private float Counter = 0;
     private bool Ground;
-    private int Health = 5;
+    private int Health = 4;
     private float Speed = 4f;
     private bool Dead = false;
     private Rigidbody2D HoundRigidBody;
