@@ -17,6 +17,14 @@ public class SkeletonController : MonoBehaviour
     private AudioSource HurtAudio;
     private AudioSource DeathAudio;
     private AudioSource SpawnAudio;
+
+    //Darian's changes
+    public bool IsDead;
+    private Animator animator;
+    private Material matRed;
+    private Material matDefault;
+    SpriteRenderer sr;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +35,13 @@ public class SkeletonController : MonoBehaviour
         SpawnAudio = audioSources[3];
         SpawnAudio.Play(0);
         this.SkeletonRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
+
+        // Darian's changes
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        matRed = Resources.Load("RedFlash", typeof(Material)) as Material;
+        matDefault = sr.material;
+
     }
 
     // Update is called once per frame
@@ -37,7 +52,7 @@ public class SkeletonController : MonoBehaviour
             return;
         }
         Counter = Counter + Time.deltaTime;
-        if (Counter > WaitTime)
+        if (Counter > WaitTime && Dead == false)
         {
             var position = this.gameObject.transform.position;
             var heroPos = player.transform.position.x;
@@ -65,8 +80,7 @@ public class SkeletonController : MonoBehaviour
         {
             gameObject.layer = 10;
             SkeletonDeath();
-        }
-        
+        }     
     }
 
     void SkeletonDeath()
@@ -75,6 +89,8 @@ public class SkeletonController : MonoBehaviour
         {
             DeathAudio.Play(0);
             Dead = true;
+            IsDead = true;
+            animator.SetBool("IsDead", IsDead);
         }
         if (!DeathAudio.isPlaying)
         {
@@ -87,22 +103,34 @@ public class SkeletonController : MonoBehaviour
         HurtAudio.Play(0);
         if (weapon == "sword")
         {
+            //Darian's change
+            if (Health > 2)
+            {
+                sr.material = matRed;
+            }
             Health = Health - 2;
         }
-        
+        if (Health > 0)
+        {
+            Invoke("ResetMat", 0.1f);
+        }
+
     }
 
     public void SkeletonKnock(GameObject enemy)
     {
-        var enemyLocation = enemy.transform.position;
-        float xKnock = 3f;
-
-        if (enemyLocation.x > this.transform.position.x)
+        if (Health >= 1)
         {
-            xKnock = -3f;
+            var enemyLocation = enemy.transform.position;
+            float xKnock = 3f;
+
+            if (enemyLocation.x > this.transform.position.x)
+            {
+                xKnock = -3f;
+            }
+            var knockVector = new Vector2(xKnock, 7f);
+            SkeletonRigidBody.velocity = knockVector;
         }
-        var knockVector = new Vector2(xKnock, 7f);
-        SkeletonRigidBody.velocity = knockVector;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -143,5 +171,11 @@ public class SkeletonController : MonoBehaviour
         {
             StepAudio.Play(0);
         }
+    }
+
+    // Darian's change
+    void ResetMat()
+    {
+        sr.material = matDefault;
     }
 }
