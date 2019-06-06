@@ -13,7 +13,7 @@ public class HeroController : MonoBehaviour
     private bool AttackCooling = false;
     public bool dead = false;
     public string weapon = "sword";
-    private float DamageCoolDown = 1f;
+    private float DamageCoolDown = 0.5f;
     private float AttackCoolDown = 0.5f;
     private float Counter = 0;
     private float AttackCounter = 0;
@@ -30,6 +30,9 @@ public class HeroController : MonoBehaviour
 
     // Darian's change
     public bool IsAttacking;
+    public bool IsHurt;
+    private float elapsedTime = 0.0f;
+    private float hurtFrames = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -101,6 +104,7 @@ public class HeroController : MonoBehaviour
             if (Counter > DamageCoolDown)
             {
                 cooling = false;
+                IsHurt = false;
                 Counter = 0;
             }
         }
@@ -138,8 +142,11 @@ public class HeroController : MonoBehaviour
         float xKnock = 6f;
 
         if (enemyLocation.x > this.transform.position.x)
-        {
+        {       
             xKnock = -6f;
+
+            //Darian's change
+            IsHurt = true;
         }
         var knockVector = new Vector2(xKnock, 12f);
         rb.velocity = knockVector;

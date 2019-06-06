@@ -25,5 +25,6 @@ public class AnimationController : MonoBehaviour
         animator.SetBool("IsJumping", movement.IsJumping);
         animator.SetBool("IsMoving", movement.IsMoving);
         animator.SetBool("IsAttacking", hero.IsAttacking);
+        animator.SetBool("IsHurt", hero.IsHurt);
     }
 }
