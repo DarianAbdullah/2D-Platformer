@@ -129,7 +129,7 @@ public class HeroController : MonoBehaviour
     void playerHit(GameObject enemy)
     {
         HurtAudio.Play(0);
-        if (enemy.tag == "skeleton")
+        if (enemy.tag == "skeleton" || enemy.tag == "skull")
         {
             Health = Health - 1;
             cooling = true;
@@ -154,7 +154,7 @@ public class HeroController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if ((collision.gameObject.tag == "enemy" || collision.gameObject.tag == "skeleton")
+        if ((collision.gameObject.tag == "enemy" || collision.gameObject.tag == "skeleton" || collision.gameObject.tag == "skull")
             && cooling == false && collision.gameObject.layer != 10)
         {
             playerHit(collision.gameObject);

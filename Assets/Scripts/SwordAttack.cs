@@ -11,6 +11,7 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
     private GameObject Player;
     private PolygonCollider2D SwordCollider;
     private PolygonCollider2D SwordColliderRev;
+    private int Counter = 0;
 
     private void Start()
     {
@@ -33,11 +34,23 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
                 this.SwordCollider.GetContacts(contacts);
                 foreach (var col in contacts)
                 {
-                    if (col.gameObject.tag == "skeleton")
+                    Counter += 1;
+                    if (Counter > 5)
+                    {
+                        Counter = 0;
+                        break;
+                    }
+                        if (col.gameObject.tag == "skeleton")
                     {
                         var doer = col.gameObject.GetComponent<SkeletonController>();
                         doer.SkeletonHit(this.gameObject.GetComponent<HeroController>().weapon);
                         doer.SkeletonKnock(this.gameObject);
+                        this.Active = false;
+                    }
+                    if (col.gameObject.tag == "skull")
+                    {
+                        var eoer = col.gameObject.GetComponent<FireSkullController>();
+                        eoer.SkullHit(this.gameObject.GetComponent<HeroController>().weapon);
                         this.Active = false;
                     }
                     break;
@@ -57,11 +70,23 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
                 this.SwordColliderRev.GetContacts(contacts);
                 foreach (var col in contacts)
                 {
+                    Counter += 1;
+                    if (Counter > 5)
+                    {
+                        Counter = 0;
+                        break;
+                    }
                     if (col.gameObject.tag == "skeleton")
                     {
                         var doer = col.gameObject.GetComponent<SkeletonController>();
                         doer.SkeletonHit(this.gameObject.GetComponent<HeroController>().weapon);
                         doer.SkeletonKnock(this.gameObject);
+                        this.Active = false;
+                    }
+                    if (col.gameObject.tag == "skull")
+                    {
+                        var eoer = col.gameObject.GetComponent<FireSkullController>();
+                        eoer.SkullHit(this.gameObject.GetComponent<HeroController>().weapon);
                         this.Active = false;
                     }
                     break;

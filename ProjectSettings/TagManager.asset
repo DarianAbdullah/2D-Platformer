@@ -9,6 +9,7 @@ TagManager:
   - enemy
   - wall
   - weapon
+  - skull
   layers:
   - Default
   - TransparentFX
