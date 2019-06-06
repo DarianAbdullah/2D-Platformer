@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Obscura
-{
     public class CameraController : AbstractCameraController
     {
         public Vector3 TopLeft;
@@ -21,6 +19,8 @@ namespace Obscura
         //GameObject locations are finalized.
         void LateUpdate()
         {
+            if (this.Target != null)
+            {
             var targetPosition = this.Target.transform.position;
             var cameraPosition = this.ManagedCamera.transform.position;
             if (targetPosition.y >= cameraPosition.y + TopLeft.y)
@@ -42,6 +42,6 @@ namespace Obscura
 
             this.ManagedCamera.transform.position = cameraPosition;
         }
+        }
     }
-}
 

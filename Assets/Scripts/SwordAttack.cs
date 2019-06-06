@@ -47,13 +47,20 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
                         doer.SkeletonKnock(this.gameObject);
                         this.Active = false;
                     }
+                    if (col.gameObject.tag == "hound")
+                    {
+                        var doer = col.gameObject.GetComponent<HoundController>();
+                        doer.HoundHit(this.gameObject.GetComponent<HeroController>().weapon);
+                        doer.HoundKnock(this.gameObject);
+                        this.Active = false;
+                    }
                     if (col.gameObject.tag == "skull")
                     {
                         var eoer = col.gameObject.GetComponent<FireSkullController>();
                         eoer.SkullHit(this.gameObject.GetComponent<HeroController>().weapon);
                         this.Active = false;
                     }
-                    break;
+                    //break;
                 }
                 if (this.ElapsedTime > DURATION || !this.Active)
                 {
@@ -83,13 +90,20 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
                         doer.SkeletonKnock(this.gameObject);
                         this.Active = false;
                     }
-                    if (col.gameObject.tag == "skull")
+                    if (col.gameObject.tag == "hound")
                     {
-                        var eoer = col.gameObject.GetComponent<FireSkullController>();
-                        eoer.SkullHit(this.gameObject.GetComponent<HeroController>().weapon);
+                        var doer = col.gameObject.GetComponent<HoundController>();
+                        doer.HoundHit(this.gameObject.GetComponent<HeroController>().weapon);
+                        doer.HoundKnock(this.gameObject);
                         this.Active = false;
                     }
-                    break;
+                    if (col.gameObject.tag == "skull")
+                    {
+                        var doer = col.gameObject.GetComponent<FireSkullController>();
+                        doer.SkullHit(this.gameObject.GetComponent<HeroController>().weapon);
+                        this.Active = false;
+                    }
+                    //break;
                 }
 
                 if (this.ElapsedTime > DURATION || !this.Active)
