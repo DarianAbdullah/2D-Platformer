@@ -47,7 +47,7 @@ public class BossController : MonoBehaviour
         //SpawnAudio = audioSources[3];
         //SpawnAudio.Play(0);
         this.BossRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
-        this.Fireball = this.gameObject.GetComponent<FireballAttack>();
+        this.Fireball = this.gameObject.GetComponent<BossFireballAttack>();
         // Darian's changes
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
