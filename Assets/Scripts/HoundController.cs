@@ -92,6 +92,7 @@ public class HoundController : MonoBehaviour
             Dead = true;
             IsDead = true;
             animator.SetBool("IsDead", IsDead);
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
         if (!DeathAudio.isPlaying)
         {
