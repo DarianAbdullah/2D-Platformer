@@ -893,6 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f0c2aa501a4d047b6486b1aa0024bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOverScreen: {fileID: 1893987367}
 --- !u!114 &522367232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19246,6 +19247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: 0
+  inArena: 0
   cooling: 0
   dead: 0
   weapon: sword

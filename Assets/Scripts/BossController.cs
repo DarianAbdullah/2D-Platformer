@@ -23,6 +23,7 @@ public class BossController : MonoBehaviour
     private Rigidbody2D BossRigidBody;
     [SerializeField] GameObject player;
     [SerializeField] private float JumpStrength;
+    [SerializeField] private RectTransform GameWonScreen;
     //private float AggroRange = 15f;
     //public AudioSource[] audioSources;
     //private AudioSource StepAudio;
@@ -172,8 +173,14 @@ public class BossController : MonoBehaviour
         }
         //if (!DeathAudio.isPlaying)
         //{
+        GameWon();
         Destroy(this.gameObject);
         //}
+    }
+
+    void GameWon()
+    {
+        GameWonScreen.gameObject.SetActive(true);
     }
 
     public void BossHit(string weapon)
