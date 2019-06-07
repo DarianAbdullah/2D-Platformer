@@ -7,7 +7,7 @@ public class BossFireballAttack : MonoBehaviour, IHeroCommand
 {
     [SerializeField]
     public GameObject FireballPrefab;
-    private GameObject Boss;
+    private GameObject Player;
     private GameObject Fireball;
     private Rigidbody2D Rigidbody;
     private CircleCollider2D FireballCollider;
@@ -23,6 +23,7 @@ public class BossFireballAttack : MonoBehaviour, IHeroCommand
     void Start()
     {
         this.Active = false;
+        this.ElapsedTime = 0.0f;
     }
 
     // Update is called once per frame
@@ -30,14 +31,15 @@ public class BossFireballAttack : MonoBehaviour, IHeroCommand
     {
         if (Active)
         {
-            if (!Boss.GetComponent<SpriteRenderer>().flipX)
+            this.ElapsedTime += Time.deltaTime;
+            if (!Player.GetComponent<SpriteRenderer>().flipX)
             {
                 FireballCollider.enabled = true;
                 var contacts = new Collider2D[6];
                 this.FireballCollider.GetContacts(contacts);
                 foreach (var col in contacts)
                 {
-                    Debug.Log(col.gameObject.tag);
+                    //Debug.Log(col.gameObject.tag);
                     Counter += 1;
                     if (Counter > 5)
                     {
@@ -47,8 +49,8 @@ public class BossFireballAttack : MonoBehaviour, IHeroCommand
                     if (col.gameObject.tag == "hero")
                     {
                         var doer = col.gameObject.GetComponent<HeroController>();
-                        doer.playerHit(Boss);
-                        doer.playerKnock(Boss);
+                        doer.playerHit(Player);
+                        doer.playerKnock(Player);
                         this.Active = false;
                         Destroy(Fireball);
                         return;
@@ -58,7 +60,7 @@ public class BossFireballAttack : MonoBehaviour, IHeroCommand
                 if (this.ElapsedTime > DURATION || !this.Active)
                 {
                     this.Active = false;
-                    //FireballCollider.enabled = false;
+                    FireballCollider.enabled = false;
                 }
                 return;
             }
@@ -70,13 +72,15 @@ public class BossFireballAttack : MonoBehaviour, IHeroCommand
         if (!Active)
         {
             Active = true;
-            Boss = gameObject;
-            var bossPosition = Boss.transform.position;
+            Player = gameObject;
+            var playerPosition = Player.transform.position;
 
-            Fireball = (GameObject)Instantiate(FireballPrefab, new Vector3(bossPosition.x - 1.4f,
-            bossPosition.y - 1f, bossPosition.z), Boss.transform.rotation);
-            Rigidbody = Fireball.GetComponent<Rigidbody2D>();
-            Rigidbody.velocity = new Vector2(-VelocityX, VelocityY);
+
+                Fireball = (GameObject)Instantiate(FireballPrefab, new Vector3(playerPosition.x - 3f,
+                    playerPosition.y - 2f, playerPosition.z), Player.transform.rotation);
+                Rigidbody = Fireball.GetComponent<Rigidbody2D>();
+                Rigidbody.velocity = new Vector2(-VelocityX, VelocityY);
+
 
             FireballCollider = Fireball.GetComponent<CircleCollider2D>();
             FireballCollider.enabled = false;

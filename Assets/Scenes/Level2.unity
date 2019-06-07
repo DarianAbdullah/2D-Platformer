@@ -14164,8 +14164,8 @@ GameObject:
   - component: {fileID: 1898333585}
   - component: {fileID: 1898333584}
   - component: {fileID: 1898333583}
-  - component: {fileID: 1898333582}
   - component: {fileID: 1898333590}
+  - component: {fileID: 1898333582}
   m_Layer: 0
   m_Name: Boss
   m_TagString: boss
@@ -14182,7 +14182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1898333581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83af2da7c019b4fd398ac6a8955a499c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f4e812fe91d446e38345afe024b4c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FireballPrefab: {fileID: 657817461356496487, guid: 16e82e00262b849f384093cb7bacbf27,
