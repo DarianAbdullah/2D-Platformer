@@ -9,7 +9,7 @@ public class BossController : MonoBehaviour
 
     private float AggroRange = 15f;
     private float WaitTime = 0.5f;
-    private float FireTime = 1f;
+    private float FireTime = 1.75f;
     private float FireCounter = 0f;
     private float PhaseMax = 5.5f;
     private float PhaseTimer = 0f;

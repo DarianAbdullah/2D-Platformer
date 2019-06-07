@@ -7,7 +7,7 @@ public class SkeletonController : MonoBehaviour
     private float WaitTime = 0.5f;
     private float Counter = 0;
     private bool Ground;
-    private int Health = 1;
+    private int Health = 4;
     private bool Dead = false;
     private Rigidbody2D SkeletonRigidBody;
     [SerializeField] GameObject player;
