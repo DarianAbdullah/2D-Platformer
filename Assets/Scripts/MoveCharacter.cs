@@ -140,6 +140,13 @@ public class MoveCharacter : MonoBehaviour
         {
             IsJumping = true;
         }
+
+        if (heroController.inArena && this.gameObject.transform.position.x < 95f)
+        {
+            var position = this.gameObject.transform.position;
+            position.x = 95f;
+            this.gameObject.transform.position = position;
+        }
     }
 
     public float GetSpeed()
