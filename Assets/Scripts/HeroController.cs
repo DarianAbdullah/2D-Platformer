@@ -30,6 +30,7 @@ public class HeroController : MonoBehaviour
     private AudioSource DeathAudio;
     private AudioSource SwordAudio;
     private AudioSource JumpAudio;
+    private AudioSource FireAudio;
 
     // Darian's change
     public bool IsAttacking;
@@ -55,6 +56,7 @@ public class HeroController : MonoBehaviour
         DeathAudio = audioSources[3];
         SwordAudio = audioSources[4];
         JumpAudio = audioSources[5];
+        FireAudio = audioSources[6];
     }
 
     // Update is called once per frame

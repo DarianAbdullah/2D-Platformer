@@ -15,6 +15,7 @@ public class FireballAttack : MonoBehaviour, IHeroCommand
     private int Counter = 0;
     private const float DURATION = 5f;
     private float ElapsedTime;
+    private AudioSource sound;
 
     private const float VelocityX = 10.0f;
     private const float VelocityY = 0.0f;
@@ -25,6 +26,7 @@ public class FireballAttack : MonoBehaviour, IHeroCommand
     void Start()
     {
         animator = GetComponent<Animator>();
+        sound = GetComponent<HeroController>().audioSources[6];
         this.Active = false;
         this.ElapsedTime = 0.0f;
     }
@@ -62,6 +64,7 @@ public class FireballAttack : MonoBehaviour, IHeroCommand
             var playerPosition = Player.transform.position;
 
             bool xDirection = Player.GetComponent<SpriteRenderer>().flipX;
+            sound.Play(0);
             if (xDirection)
             {
                 Fireball = (GameObject)Instantiate(FireballPrefab, new Vector3(playerPosition.x - 1.4f, 

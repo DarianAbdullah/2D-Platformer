@@ -28,5 +28,10 @@ public class FireBallDestroyer : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (collision.gameObject.tag == "Ground")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
