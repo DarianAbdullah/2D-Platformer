@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 657817461356496482}
   - component: {fileID: 657817461356496485}
   - component: {fileID: 1679140928675103472}
+  - component: {fileID: 8490498177987577935}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -138,3 +139,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8490498177987577935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657817461356496487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b023bc1b8f4f459498b17664775c9b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

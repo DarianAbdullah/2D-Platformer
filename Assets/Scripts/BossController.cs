@@ -135,7 +135,7 @@ public class BossController : MonoBehaviour
                 direction = -1f;
                 //gameObject.GetComponent<SpriteRenderer>().flipX = false;
             }
-            position.x += direction * 2f * Time.deltaTime;
+            position.x += direction * 4f * Time.deltaTime;
             this.gameObject.transform.position = position;
         }
 
@@ -186,8 +186,8 @@ public class BossController : MonoBehaviour
     public void BossHit(string weapon)
     {
         //HurtAudio.Play(0);
-        if (currentPhase != Phase.Fireball && currentPhase != Phase.Running)
-        {
+        //if (currentPhase != Phase.Fireball && currentPhase != Phase.Running)
+        //{
             if (weapon == "sword")
             {
                 //Darian's change
@@ -201,7 +201,7 @@ public class BossController : MonoBehaviour
             {
                 Invoke("ResetMat", 0.1f);
             }
-        }
+        //}
     }
 
     public void BossKnock(GameObject enemy)
