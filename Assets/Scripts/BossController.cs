@@ -15,7 +15,7 @@ public class BossController : MonoBehaviour
     private float PhaseTimer = 0f;
     private float Counter = 0;
     private bool Ground;
-    private int Health = 40;
+    private int Health = 1;
     private int PrevHealth;
     private bool Dead = false;
     private enum Phase { Attacking, Running, Fireball, Seeking, Retreating, Waiting };
@@ -25,10 +25,10 @@ public class BossController : MonoBehaviour
     [SerializeField] private float JumpStrength;
     [SerializeField] private RectTransform GameWonScreen;
     //private float AggroRange = 15f;
-    //public AudioSource[] audioSources;
+    public AudioSource[] audioSources;
     //private AudioSource StepAudio;
-    //private AudioSource HurtAudio;
-    //private AudioSource DeathAudio;
+    private AudioSource HurtAudio;
+    private AudioSource DeathAudio;
     //private AudioSource SpawnAudio;
 
     //Darian's changes
@@ -41,10 +41,10 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //audioSources = GetComponents<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
         //StepAudio = audioSources[0];
-        //HurtAudio = audioSources[1];
-        //DeathAudio = audioSources[2];
+        HurtAudio = audioSources[0];
+        DeathAudio = audioSources[1];
         //SpawnAudio = audioSources[3];
         //SpawnAudio.Play(0);
         this.BossRigidBody = this.gameObject.GetComponent<Rigidbody2D>();
@@ -166,16 +166,17 @@ public class BossController : MonoBehaviour
     {
         if (!Dead)
         {
-            //DeathAudio.Play(0);
+            currentPhase = Phase.Waiting;
+            DeathAudio.Play(0);
             Dead = true;
             IsDead = true;
             animator.SetBool("IsDead", IsDead);
         }
-        //if (!DeathAudio.isPlaying)
-        //{
+        if (!DeathAudio.isPlaying)
+        {
         GameWon();
         Destroy(this.gameObject);
-        //}
+        }
     }
 
     void GameWon()
@@ -185,7 +186,7 @@ public class BossController : MonoBehaviour
 
     public void BossHit(string weapon)
     {
-        //HurtAudio.Play(0);
+        HurtAudio.Play(0);
         //if (currentPhase != Phase.Fireball && currentPhase != Phase.Running)
         //{
             if (weapon == "sword")
