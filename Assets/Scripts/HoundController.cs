@@ -157,6 +157,12 @@ public class HoundController : MonoBehaviour
                 HoundRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
         }
+
+        if (collision.gameObject.tag == "Untagged")
+        {
+            HoundHit("sword");
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

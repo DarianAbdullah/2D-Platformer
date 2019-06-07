@@ -159,6 +159,12 @@ public class SkeletonController : MonoBehaviour
                     SkeletonRigidBody.velocity += Vector2.up * this.JumpStrength;
             }
         }
+        if (collision.gameObject.tag == "Untagged")
+        {
+            SkeletonHit("sword");
+            Destroy(collision.gameObject);
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)

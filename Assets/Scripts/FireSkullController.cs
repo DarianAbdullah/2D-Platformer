@@ -64,4 +64,15 @@ public class FireSkullController : MonoBehaviour
         SkullDeath();
         Health = 0;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "Untagged")
+        {
+            SkullHit("sword");
+            Destroy(collision.gameObject);
+        }
+
+    }
 }

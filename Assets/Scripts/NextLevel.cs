@@ -10,7 +10,7 @@ public class NextLevel : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("hI");
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("hero"))
         {
             SceneManager.LoadScene(6); 
         }

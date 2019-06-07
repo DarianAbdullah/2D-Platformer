@@ -15,7 +15,7 @@ public class BossController : MonoBehaviour
     private float PhaseTimer = 0f;
     private float Counter = 0;
     private bool Ground;
-    private int Health = 10;
+    private int Health = 40;
     private int PrevHealth;
     private bool Dead = false;
     private enum Phase { Attacking, Running, Fireball, Seeking, Retreating, Waiting };
@@ -63,7 +63,7 @@ public class BossController : MonoBehaviour
         {
             return;
         }
-        Debug.Log(this.currentPhase);
+        //Debug.Log(this.currentPhase);
         if (this.currentPhase == Phase.Waiting)
         {
             var position = this.gameObject.transform.position;
@@ -87,7 +87,7 @@ public class BossController : MonoBehaviour
             }
             position.x += 2f * Time.deltaTime;
             this.gameObject.transform.position = position;
-            Debug.Log(position.x);
+            //Debug.Log(position.x);
 
             if (position.x > 130)
             {
@@ -179,7 +179,7 @@ public class BossController : MonoBehaviour
     public void BossHit(string weapon)
     {
         //HurtAudio.Play(0);
-        if (currentPhase != Phase.Fireball)
+        if (currentPhase != Phase.Fireball && currentPhase != Phase.Running)
         {
             if (weapon == "sword")
             {
@@ -223,18 +223,18 @@ public class BossController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Ground")
         {
             Ground = true;
         }
 
-        if (collision.gameObject.tag == "wall")
+        if (collision.gameObject.tag == "Untagged")
         {
-            if (Ground)
-            {
-                BossRigidBody.velocity += Vector2.up * this.JumpStrength;
-            }
+            BossHit("sword");
+            Destroy(collision.gameObject);
         }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)

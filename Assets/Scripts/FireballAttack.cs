@@ -29,67 +29,7 @@ public class FireballAttack : MonoBehaviour, IHeroCommand
     // Update is called once per frame
     void Update()
     {
-        if (Active)
-        {
-            this.ElapsedTime += Time.deltaTime;
-            if (!Player.GetComponent<SpriteRenderer>().flipX)
-            {
-                FireballCollider.enabled = true;
-                var contacts = new Collider2D[6];
-                this.FireballCollider.GetContacts(contacts);
-                foreach (var col in contacts)
-                {
-                    //Debug.Log(col.gameObject.tag);
-                    Counter += 1;
-                    if (Counter > 5)
-                    {
-                        Counter = 0;
-                        break;
-                    }
-                    if (col.gameObject.tag == "skeleton")
-                    {
-                        var doer = col.gameObject.GetComponent<SkeletonController>();
-                        doer.SkeletonHit(this.gameObject.GetComponent<HeroController>().weapon);
-                        doer.SkeletonKnock(this.gameObject);
-                        this.Active = false;
-                        Destroy(Fireball);
-                        return;
-                    }
-                    if (col.gameObject.tag == "boss")
-                    {
-                        var doer = col.gameObject.GetComponent<BossController>();
-                        doer.BossHit(this.gameObject.GetComponent<HeroController>().weapon);
-                        this.Active = false;
-                        Destroy(Fireball);
-                        return;
-                    }
-                    if (col.gameObject.tag == "hound")
-                    {
-                        var doer = col.gameObject.GetComponent<HoundController>();
-                        doer.HoundHit(this.gameObject.GetComponent<HeroController>().weapon);
-                        doer.HoundKnock(this.gameObject);
-                        this.Active = false;
-                        Destroy(Fireball);
-                        return;
-                    }
-                    if (col.gameObject.tag == "skull")
-                    {
-                        var eoer = col.gameObject.GetComponent<FireSkullController>();
-                        eoer.SkullHit(this.gameObject.GetComponent<HeroController>().weapon);
-                        this.Active = false;
-                        Destroy(Fireball);
-                        return;
-                    }
-                    //break;
-                }
-                if (this.ElapsedTime > DURATION || !this.Active)
-                {
-                    this.Active = false;
-                    FireballCollider.enabled = false;
-                }
-                return;
-            }
-        }
+        Active = false;
     }
 
     public void Execute(GameObject gameObject)
@@ -117,7 +57,7 @@ public class FireballAttack : MonoBehaviour, IHeroCommand
             }
 
             FireballCollider = Fireball.GetComponent<CircleCollider2D>();
-            FireballCollider.enabled = false;
+            FireballCollider.enabled = true;
         }
     }
 }
