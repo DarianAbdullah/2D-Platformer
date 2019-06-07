@@ -20,6 +20,7 @@ public class HeroController : MonoBehaviour
     private int Health = 10;
     private Rigidbody2D rb;
     private HealthBar PlayerHealthBar;
+    private GameOver GameOverScreen;
     public AudioSource[] audioSources;
     private AudioSource StepAudio;
     private AudioSource HurtAudio;
@@ -42,6 +43,7 @@ public class HeroController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         PlayerHealthBar = GetComponent<HealthBar>();
+        GameOverScreen = GetComponent<GameOver>();
         audioSources = GetComponents<AudioSource>();
         StepAudio = audioSources[0];
         HurtAudio = audioSources[1];
@@ -54,6 +56,11 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(dead)
+        {
+            GameOverScreen.IsGameOver();
+        }
+
         if (Input.GetButtonDown("Fire1") && !AttackCooling)
         {
             //Darian's change
