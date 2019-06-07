@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fee54b55347421418b38a847d3bfa5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1876046016}
   audioSources: []
   IsDead: 0
 --- !u!50 &654664600
@@ -1792,13 +1792,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.3064157, y: 0.44100687}
+    - - {x: 1.4867088, y: 0.4410068}
       - {x: -0.41032243, y: 0.44235483}
       - {x: -0.41065866, y: -0.4160258}
       - {x: -0.5877852, y: -0.80901706}
       - {x: 0.58778536, y: -0.80901694}
       - {x: 1.4708844, y: -0.4752841}
-      - {x: 1.5098156, y: 0.32953066}
 --- !u!4 &766449496
 Transform:
   m_ObjectHideFlags: 0
@@ -1857,19 +1856,12 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.44241822, y: 0.4555178}
       - {x: -0.39332238, y: 0.45686546}
-      - {x: -0.6342318, y: 0.45411363}
-      - {x: -1.8498831, y: 0.30310544}
-      - {x: -2.0158188, y: 0.2559703}
-      - {x: -2.0770135, y: 0.18320115}
-      - {x: -2.274335, y: 0.09873174}
+      - {x: -2.2820203, y: 0.4589972}
       - {x: -2.2686028, y: -0.098170064}
-      - {x: -1.6167438, y: 0.06396706}
-      - {x: -0.41065866, y: -0.4160258}
-      - {x: -2.252895, y: -0.09359496}
       - {x: -0.5877852, y: -0.80901706}
       - {x: 0.58778536, y: -0.80901694}
-      - {x: 1.4708844, y: -0.4752841}
-      - {x: 1.8174558, y: 0.26769522}
+      - {x: 1.9343258, y: -0.48016787}
+      - {x: 1.9376072, y: 0.45815897}
 --- !u!4 &770996173
 Transform:
   m_ObjectHideFlags: 0
@@ -2338,7 +2330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7381a4e7483e7fe46abf7d2eed92693a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1876046016}
   JumpStrength: 0
   audioSources: []
   IsDead: 0
@@ -9267,7 +9259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f8b8e5d40cd4d4fbdf61c9c559aa46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  Target: {fileID: 1876046016}
   TopLeft: {x: 0, y: 0, z: 0}
   BottomRight: {x: 0, y: 0, z: 0}
 --- !u!82 &1683859127
@@ -17022,7 +17014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8281487c28b10094b991fc762c2ab813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1876046016}
   JumpStrength: 0
   audioSources: []
   IsDead: 0
