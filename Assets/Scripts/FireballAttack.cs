@@ -29,13 +29,30 @@ public class FireballAttack : MonoBehaviour, IHeroCommand
     // Update is called once per frame
     void Update()
     {
-        Active = false;
+        // Change by Heping 
+        //Active = false;
+        this.ElapsedTime += Time.deltaTime;
+        if(this.ElapsedTime > DURATION)
+        {
+            Active = false;
+        }
+    }
+
+    public float GetFireCooldown()
+    {
+        return this.ElapsedTime;
+    }
+
+    public float GetDuration()
+    {
+        return DURATION;
     }
 
     public void Execute(GameObject gameObject)
     {
         if (!Active)
         {
+            this.ElapsedTime = 0;
             Active = true;
             Player = gameObject;
             var playerPosition = Player.transform.position;
