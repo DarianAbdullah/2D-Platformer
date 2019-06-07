@@ -93,13 +93,13 @@ TextureImporter:
       name: demon-idle_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 17
-        width: 134
-        height: 124
+        x: 15
+        y: 0
+        width: 136
+        height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -113,13 +113,13 @@ TextureImporter:
       name: demon-idle_1
       rect:
         serializedVersion: 2
-        x: 164
-        y: 16
-        width: 156
-        height: 93
+        x: 163
+        y: 0
+        width: 158
+        height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 16, z: 0, w: 34}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -133,13 +133,13 @@ TextureImporter:
       name: demon-idle_2
       rect:
         serializedVersion: 2
-        x: 332
-        y: 18
-        width: 140
-        height: 91
+        x: 331
+        y: 0
+        width: 142
+        height: 143
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 18, z: 0, w: 33}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -153,13 +153,13 @@ TextureImporter:
       name: demon-idle_3
       rect:
         serializedVersion: 2
-        x: 498
-        y: 18
-        width: 100
-        height: 93
+        x: 493
+        y: 2
+        width: 130
+        height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 0, z: 15, w: 32}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -173,13 +173,13 @@ TextureImporter:
       name: demon-idle_4
       rect:
         serializedVersion: 2
-        x: 652
-        y: 18
-        width: 140
-        height: 91
+        x: 632
+        y: 0
+        width: 158
+        height: 140
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 18, z: 0, w: 29}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -193,13 +193,13 @@ TextureImporter:
       name: demon-idle_5
       rect:
         serializedVersion: 2
-        x: 804
-        y: 18
-        width: 156
-        height: 91
+        x: 792
+        y: 0
+        width: 168
+        height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 18, z: 0, w: 33}
       outline: []
       physicsShape: []
       tessellationDetail: 0
