@@ -19,9 +19,12 @@ public class BossFireballAttack : MonoBehaviour, IHeroCommand
     private const float VelocityX = 10.0f;
     private const float VelocityY = 0.0f;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         this.Active = false;
         this.ElapsedTime = 0.0f;
     }
@@ -73,6 +76,7 @@ public class BossFireballAttack : MonoBehaviour, IHeroCommand
         if (!Active)
         {
             Active = true;
+            animator.SetBool("IsFire", Active);
             Player = gameObject;
             var playerPosition = Player.transform.position;
 
