@@ -11,6 +11,8 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
     private GameObject Player;
     private PolygonCollider2D SwordCollider;
     private PolygonCollider2D SwordColliderRev;
+    private PolygonCollider2D AirSwordCollider;
+    private PolygonCollider2D AirSwordColliderRev;
     private int Counter = 0;
 
     private void Start()
@@ -29,9 +31,17 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
 
             if (!Player.GetComponent<SpriteRenderer>().flipX)
             {
-                SwordCollider.enabled = true;
                 var contacts = new Collider2D[6];
-                this.SwordCollider.GetContacts(contacts);
+                if (Player.GetComponent<HeroController>().ground)
+                {
+                SwordCollider.enabled = true;
+                    this.SwordCollider.GetContacts(contacts);
+                }
+                else
+                {
+                    AirSwordCollider.enabled = true;
+                    this.AirSwordCollider.GetContacts(contacts);
+                }
                 foreach (var col in contacts)
                 {
                     Counter += 1;
@@ -66,15 +76,24 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
                 {
                     this.Active = false;
                     SwordCollider.enabled = false;
+                    AirSwordCollider.enabled = false;
                 }
                 return;
             }
 
             if (Player.GetComponent<SpriteRenderer>().flipX)
             {
-                SwordColliderRev.enabled = true;
                 var contacts = new Collider2D[6];
-                this.SwordColliderRev.GetContacts(contacts);
+                if (Player.GetComponent<HeroController>().ground)
+                {
+                SwordColliderRev.enabled = true;
+                    this.SwordColliderRev.GetContacts(contacts);
+                }
+                else
+                {
+                    AirSwordColliderRev.enabled = true;
+                    this.AirSwordColliderRev.GetContacts(contacts);
+                }
                 foreach (var col in contacts)
                 {
                     Counter += 1;
@@ -110,6 +129,7 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
                 {
                     this.Active = false;
                     SwordColliderRev.enabled = false;
+                    AirSwordColliderRev.enabled = false;
                 }
                 return;
             }
@@ -125,6 +145,8 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
             this.Player = gameObject;
             this.SwordCollider = this.Player.transform.Find("SwordHitBox").GetComponent<PolygonCollider2D>();
             this.SwordColliderRev = this.Player.transform.Find("SwordHitBoxRev").GetComponent<PolygonCollider2D>();
+            this.AirSwordCollider = this.Player.transform.Find("AirSwordHitBox").GetComponent<PolygonCollider2D>();
+            this.AirSwordColliderRev = this.Player.transform.Find("AirSwordHitBoxRev").GetComponent<PolygonCollider2D>();
             this.SwordCollider.enabled = false;
             this.SwordColliderRev.enabled = false;
         }

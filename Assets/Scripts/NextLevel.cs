@@ -12,7 +12,7 @@ public class NextLevel : MonoBehaviour
         Debug.Log("hI");
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(7); 
+            SceneManager.LoadScene(6); 
         }
     }
 }
