@@ -16172,6 +16172,7 @@ GameObject:
   - component: {fileID: 1876046025}
   - component: {fileID: 1876046024}
   - component: {fileID: 1876046023}
+  - component: {fileID: 1876046033}
   - component: {fileID: 1876046022}
   - component: {fileID: 1876046021}
   - component: {fileID: 1876046020}
@@ -16794,6 +16795,7 @@ MonoBehaviour:
   weapon: sword
   audioSources: []
   IsAttacking: 0
+  IsCasting: 0
   IsHurt: 0
 --- !u!114 &1876046025
 MonoBehaviour:
@@ -17069,6 +17071,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverPanel: {fileID: 1893987367}
+--- !u!114 &1876046033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876046016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83af2da7c019b4fd398ac6a8955a499c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireballPrefab: {fileID: 657817461356496487, guid: 16e82e00262b849f384093cb7bacbf27,
+    type: 3}
 --- !u!1 &1888002060
 GameObject:
   m_ObjectHideFlags: 0
