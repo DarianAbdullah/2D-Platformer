@@ -144,7 +144,7 @@ public class HeroController : MonoBehaviour
         }
     }
 
-    void playerHit(GameObject enemy)
+    public void playerHit(GameObject enemy)
     {
         HurtAudio.Play(0);
         if (enemy.tag == "skeleton" || enemy.tag == "skull")
@@ -159,7 +159,7 @@ public class HeroController : MonoBehaviour
         }
     }
 
-    void playerKnock(GameObject enemy)
+    public void playerKnock(GameObject enemy)
     {
         var enemyLocation = enemy.transform.position;
         float xKnock = 6f;
