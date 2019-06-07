@@ -10,6 +10,7 @@ public class HeroController : MonoBehaviour
     private IHeroCommand Fireball;
 
     public bool ground;
+    public bool inArena = false;
     public bool cooling = false;
     private bool AttackCooling = false;
     public bool dead = false;
@@ -94,6 +95,11 @@ public class HeroController : MonoBehaviour
         {
             playerDeath();
         }
+
+        if (this.transform.position.x > 95f)
+        {
+            inArena = true;
+        }
     }
 
     public int GetHealth()
@@ -165,7 +171,7 @@ public class HeroController : MonoBehaviour
         var enemyLocation = enemy.transform.position;
         float xKnock = 6f;
 
-        if (enemy.tag == "hound" || enemy.tag == "enemy" || enemy.tag == "boss")
+        if (enemy.tag == "hound" || enemy.tag == "boss")
         {
             xKnock = 12f;
         }
