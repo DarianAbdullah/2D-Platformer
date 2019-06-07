@@ -12,6 +12,7 @@ public class SkeletonController : MonoBehaviour
     private Rigidbody2D SkeletonRigidBody;
     [SerializeField] GameObject player;
     [SerializeField] private float JumpStrength;
+    private float AggroRange = 15f;
     public AudioSource[] audioSources;
     private AudioSource StepAudio;
     private AudioSource HurtAudio;
@@ -73,7 +74,10 @@ public class SkeletonController : MonoBehaviour
                 direction = 0f;
                 gameObject.GetComponent<SpriteRenderer>().flipX = false;
             }
-            position.x += direction * 2f * Time.deltaTime;
+            if (Mathf.Abs(heroPos - position.x) < AggroRange)
+            {
+                position.x += direction * 2f * Time.deltaTime;
+            }
             this.gameObject.transform.position = position;
         }
         if (Health <= 0)
