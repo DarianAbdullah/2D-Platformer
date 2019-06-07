@@ -152,7 +152,7 @@ public class HeroController : MonoBehaviour
             Health = Health - 1;
             cooling = true;
         }
-        if (enemy.tag == "hound")
+        if (enemy.tag == "hound" || enemy.tag == "boss")
         {
             Health = Health - 2;
             cooling = true;
@@ -165,7 +165,7 @@ public class HeroController : MonoBehaviour
         var enemyLocation = enemy.transform.position;
         float xKnock = 6f;
 
-        if (enemy.tag == "hound" || enemy.tag == "enemy")
+        if (enemy.tag == "hound" || enemy.tag == "enemy" || enemy.tag == "boss")
         {
             xKnock = 12f;
         }
@@ -184,7 +184,7 @@ public class HeroController : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         if ((collision.gameObject.tag == "skeleton" || collision.gameObject.tag == "skull"
-            || collision.gameObject.tag == "hound")
+            || collision.gameObject.tag == "hound" || collision.gameObject.tag == "boss")
             && cooling == false && collision.gameObject.layer != 10)
         {
             playerHit(collision.gameObject);
