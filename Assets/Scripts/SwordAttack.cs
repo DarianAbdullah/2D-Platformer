@@ -73,7 +73,7 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
             if (Player.GetComponent<SpriteRenderer>().flipX)
             {
                 SwordColliderRev.enabled = true;
-                var contacts = new Collider2D[5];
+                var contacts = new Collider2D[6];
                 this.SwordColliderRev.GetContacts(contacts);
                 foreach (var col in contacts)
                 {
