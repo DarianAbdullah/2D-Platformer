@@ -153,30 +153,6 @@ public class BossController : MonoBehaviour
             }
         }
 
-        //if (Dead == false)
-        //{
-        //    var position = this.gameObject.transform.position;
-        //    var heroPos = player.transform.position.x;
-        //    float direction = 0f;
-        //    if (heroPos > position.x + 0.3f || heroPos > position.x - 0.3f)
-        //    {
-        //        direction = 1f;
-        //        gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        //    }
-
-        //    else if (heroPos < position.x + 0.3f || heroPos < position.x - 0.3f)
-        //    {
-        //        direction = -1f;
-        //        gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        //    }
-        //    else
-        //    {
-        //        direction = 0f;
-        //        gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        //    }
-        //    position.x += direction * 2f * Time.deltaTime;
-        //    this.gameObject.transform.position = position;
-        //}
         if (Health <= 0)
         {
             gameObject.layer = 10;
@@ -203,20 +179,22 @@ public class BossController : MonoBehaviour
     public void BossHit(string weapon)
     {
         //HurtAudio.Play(0);
-        if (weapon == "sword")
+        if (currentPhase != Phase.Fireball)
         {
-            //Darian's change
-            if (Health > 2)
+            if (weapon == "sword")
             {
-                sr.material = matRed;
+                //Darian's change
+                if (Health > 2)
+                {
+                    sr.material = matRed;
+                }
+                Health = Health - 2;
             }
-            Health = Health - 2;
+            if (Health > 0)
+            {
+                Invoke("ResetMat", 0.1f);
+            }
         }
-        if (Health > 0)
-        {
-            Invoke("ResetMat", 0.1f);
-        }
-
     }
 
     public void BossKnock(GameObject enemy)

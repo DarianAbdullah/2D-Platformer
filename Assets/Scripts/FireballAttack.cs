@@ -55,6 +55,14 @@ public class FireballAttack : MonoBehaviour, IHeroCommand
                         Destroy(Fireball);
                         return;
                     }
+                    if (col.gameObject.tag == "boss")
+                    {
+                        var doer = col.gameObject.GetComponent<BossController>();
+                        doer.BossHit(this.gameObject.GetComponent<HeroController>().weapon);
+                        this.Active = false;
+                        Destroy(Fireball);
+                        return;
+                    }
                     if (col.gameObject.tag == "hound")
                     {
                         var doer = col.gameObject.GetComponent<HoundController>();
