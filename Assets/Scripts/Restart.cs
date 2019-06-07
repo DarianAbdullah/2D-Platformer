@@ -19,6 +19,6 @@ public class Restart : MonoBehaviour
     // Loads the earlies levels
     public void RestartGame()
     {
-        Application.LoadLevel(0);
+        Application.LoadLevel(5);
     }
 }
