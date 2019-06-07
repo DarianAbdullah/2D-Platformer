@@ -7,6 +7,7 @@ using Hero.Command;
 public class HeroController : MonoBehaviour
 {
     private IHeroCommand Attack;
+    private IHeroCommand Fireball;
 
     public bool ground;
     public bool cooling = false;
@@ -30,6 +31,7 @@ public class HeroController : MonoBehaviour
 
     // Darian's change
     public bool IsAttacking;
+    public bool IsCasting;
     public bool IsHurt;
     private float elapsedTime = 0.0f;
     private float hurtFrames = 0.2f;
@@ -39,6 +41,7 @@ public class HeroController : MonoBehaviour
     {
         this.gameObject.AddComponent<SwordAttack>();
         this.Attack = this.gameObject.GetComponent<SwordAttack>();
+        this.Fireball = this.gameObject.GetComponent<FireballAttack>();
 
         rb = GetComponent<Rigidbody2D>();
         PlayerHealthBar = GetComponent<HealthBar>();
@@ -62,6 +65,14 @@ public class HeroController : MonoBehaviour
             AttackCooling = true;
             SwordAudio.Play(0);
             this.Attack.Execute(this.gameObject);
+        }
+
+        if(Input.GetButtonDown("Fire2") && !AttackCooling)
+        {
+            IsAttacking = true;
+            AttackCooling = true;
+
+            this.Fireball.Execute(this.gameObject);
         }
 
         if (ground && Input.GetButtonDown("Jump"))
