@@ -2,29 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class CameraController : AbstractCameraController
+public class CameraController : AbstractCameraController
+{
+    public Vector3 TopLeft;
+    public Vector3 BottomRight;
+    private Camera ManagedCamera;
+
+    private void Awake()
     {
-        public Vector3 TopLeft;
-        public Vector3 BottomRight;
-        private Camera ManagedCamera;
+        this.ManagedCamera = this.gameObject.GetComponent<Camera>();
+    }
 
-        private void Awake()
+    //Use the LateUpdate message to avoid setting the camera's position before
+    //GameObject locations are finalized.
+    void LateUpdate()
+    {
+        if (this.Target != null)
         {
-            this.ManagedCamera = this.gameObject.GetComponent<Camera>();
-        }
-
-        //Use the LateUpdate message to avoid setting the camera's position before
-        //GameObject locations are finalized.
-        void LateUpdate()
-        {
-            if (this.Target != null)
-            {
             var targetPosition = this.Target.transform.position;
             var cameraPosition = this.ManagedCamera.transform.position;
             cameraPosition = new Vector3(targetPosition.x + 5f, cameraPosition.y, cameraPosition.z);
 
             this.ManagedCamera.transform.position = cameraPosition;
         }
-        }
     }
-
+}
