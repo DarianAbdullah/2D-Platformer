@@ -39,7 +39,7 @@ public class FireballAttack : MonoBehaviour, IHeroCommand
                 this.FireballCollider.GetContacts(contacts);
                 foreach (var col in contacts)
                 {
-                    Debug.Log(col.gameObject.tag);
+                    //Debug.Log(col.gameObject.tag);
                     Counter += 1;
                     if (Counter > 5)
                     {

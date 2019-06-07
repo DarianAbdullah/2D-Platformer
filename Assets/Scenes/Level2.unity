@@ -10609,7 +10609,7 @@ GameObject:
   - component: {fileID: 465685735}
   m_Layer: 0
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14165,9 +14165,10 @@ GameObject:
   - component: {fileID: 1898333584}
   - component: {fileID: 1898333583}
   - component: {fileID: 1898333582}
+  - component: {fileID: 1898333590}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14342,6 +14343,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1898333590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898333581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25efd7e8ef271a4da37c52b06d60a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 465685719}
+  JumpStrength: 0
+  IsDead: 0
 --- !u!1 &1899143699
 GameObject:
   m_ObjectHideFlags: 0

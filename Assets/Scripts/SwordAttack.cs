@@ -70,6 +70,12 @@ public class SwordAttack : MonoBehaviour, IHeroCommand
                         eoer.SkullHit(this.gameObject.GetComponent<HeroController>().weapon);
                         this.Active = false;
                     }
+                    if (col.gameObject.tag == "boss")
+                    {
+                        var doer = col.gameObject.GetComponent<BossController>();
+                        doer.BossHit(this.gameObject.GetComponent<HeroController>().weapon);
+                        this.Active = false;
+                    }
                     //break;
                 }
                 if (this.ElapsedTime > DURATION || !this.Active)
