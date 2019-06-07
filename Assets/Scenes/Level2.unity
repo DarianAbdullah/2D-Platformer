@@ -14185,7 +14185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4e812fe91d446e38345afe024b4c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireballPrefab: {fileID: 657817461356496487, guid: 16e82e00262b849f384093cb7bacbf27,
+  FireballPrefab: {fileID: 3440089575399623737, guid: 3caf65de96fd2b948a2dd24e029fa063,
     type: 3}
 --- !u!212 &1898333583
 SpriteRenderer:
