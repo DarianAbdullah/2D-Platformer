@@ -185,6 +185,11 @@ public class HeroController : MonoBehaviour
             ground = true;
             LandAudio.Play(0);
         }
+
+        if(collision.gameObject.tag == "spike")
+        {
+            Health = 0;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
