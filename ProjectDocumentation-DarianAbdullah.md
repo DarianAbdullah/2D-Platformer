@@ -15,6 +15,20 @@ damage and the fireballs take no resources away from you.
 
 # Main Role #
 
+## Movement/Physics
+
+The platformer uses rigidbodies to determine its physics when objects collide with each other, and uses either box colliders or polygon colliders to determine the exact hitbox of the object in question. Hitboxes were mostly rectangles except for the skeletons which had a pentagonal hitbox to make it easier for the player to hurdle the skeletons.
+
+One of the first changes made was to disable objects from rotating when either colliding with other objects or interacting with the terrain. This was a simple change: we just disabled z-axis rotation in the rigidbody component of the objects that weren't supposed to rotate. The player object was also given a higher mass than the basic mobs so that the player could in principle push the enemies when touching them instead of getting pushed by them.
+
+The basic movement of the player was handled by an ADSR envelope. When moving either left or right, movement starts with a high initial attack curve (much like toad's movement) lasting 0.05 seconds up to a 1.1x multiplier at the peak of a movement "bump," before decaying down to a 1.0x over 0.05 seconds into a constant sustain, and then a linear release over 0.1 seconds to a halt. Since the ADSR envelope doesn't take rigidbody physics into account, the player would often clip a little into the wall and get pushed out by the rigidbody physics. To make this push-out process faster, I increased the baumgarte time of impact scale to 0.75 to speed up the pushout process.
+
+Enemy movement is much simpler by contrast, as each simply moves at a constant speed towards the player when aggro. The exception is the Boss, which has a lerp movement in his second phase. After getting hit by the player, the Boss lerps back to a specified location.
+
+The Boss also has a higher mass than the player so that the player won't be able to easily push the Boss should they come into contact with it.
+
+Another minor addition was pass-through platforms that you could jump up through from below.
+
 ## Animation and Visuals
 
 [Gothicvania Pateron's Collection](https://ansimuz.itch.io/gothicvania-patreon-collection) and [Gothicvania Cemetery](https://ansimuz.itch.io/gothicvania-cemetery) - 
@@ -52,3 +66,12 @@ To help balance out the work out, I helped create the FireSkullController script
 The narrative is first present by the five intro scenes that I created. I wanted to go with a dark story to fit with a dark, metroidvania aesthetic. I believe that the assets that I chose and the story are both dark.
 I used the background of level 1, the blood moon, in the intro cards to set the transition from the intro to the main game. As explained earlier, I thought it would be a good idea to start the player in the cemetery because
 of the mention of the main characters dead wife in the intro, and adding a giant demon boss at the end of level 2 because of the main characters goal to kill all demons.
+
+
+## Game Feel
+
+With game feel, the hardest part was getting the player control to feel smooth. I had to mess with the values for sustain speed, gravity scale, and jump strength to make basic player control feel good. Along with that, I had to make sure that collisions between the player and enemies felt fair. This is why I made the skeletons have a smaller, non-rectangular hitbox because it made it much easier for the player to hurdle the skeletons. I similarly shrank the player's hitbox so when they get hit it feels fair. For the Boss, I had to tweak the height of his hitbox as before players could shoot fireballs right over his head.
+
+For attacks, I gave the sword swipe attack a kind of bulb-shaped hitbox to better match the shape of the swing. To make aerial attacks feel better and easier to connect, I increased the hitbox size when the player is in the air. The biggest shortcoming of the game feel is that attack hitboxes frequently didn't connect properly for no discernible reason, though it is likely that this could be due to the hitbox flipping when players turn around while attacking.
+
+We briefly had an arena "door" that prevented the player from moving backwards beyond a certain point in phase 2, but we later removed it because the players would get confused when they suddenly couldn't move backwards.
