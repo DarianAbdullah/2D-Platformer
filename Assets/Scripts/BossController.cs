@@ -15,7 +15,7 @@ public class BossController : MonoBehaviour
     private float PhaseTimer = 0f;
     private float Counter = 0;
     private bool Ground;
-    private int Health = 1;
+    private int Health = 20;
     private int PrevHealth;
     private bool Dead = false;
     private enum Phase { Attacking, Running, Fireball, Seeking, Retreating, Waiting };
@@ -145,7 +145,7 @@ public class BossController : MonoBehaviour
             var heroPos = player.transform.position.x;
             if (position.x < 130)
             {
-                position = Vector2.Lerp(position, new Vector2(131, position.y), .1f);
+                position = Vector2.Lerp(position, new Vector2(131, position.y), .05f);
                 this.gameObject.transform.position = position;
             }
             else
