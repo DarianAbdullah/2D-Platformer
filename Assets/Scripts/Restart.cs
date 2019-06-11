@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Restart : MonoBehaviour
 {
@@ -32,6 +33,6 @@ public class Restart : MonoBehaviour
     // Loads the earlies levels
     public void RestartGame()
     {
-        Application.LoadLevel(5);
+        Application.LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }

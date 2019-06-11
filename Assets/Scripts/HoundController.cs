@@ -8,7 +8,7 @@ public class HoundController : MonoBehaviour
     private float Counter = 0;
     private bool Ground;
     private int Health = 6;
-    private float Speed = 8f;
+    private float Speed = 3.5f;
     private bool Dead = false;
     private Rigidbody2D HoundRigidBody;
     [SerializeField] GameObject player;
