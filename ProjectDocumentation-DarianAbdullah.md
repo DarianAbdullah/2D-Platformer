@@ -79,6 +79,7 @@ Mouse and PC controls:
 * Enter/return for enter
 
 ## UI
+
 The first UI that was implmented was the HP bar. It was implemented using the UI Slider and some scripting to control it. The HP bar script references the hero in order to call the GetHealth() function from HeroController in order to update the bar. The HP bar is directly related to the heath mechanic that is implemented as a part of gameplay and is visually how the player interact with the health system when the player character isn't dead. 
 
 The second UI that was implemented was the game over panel that shows up when the player dies from having no more health. The gameover screen says that the player has died and gives the player a button that restarts the level that they died in. This UI is the other way for players to interact with HP or the lack of it. The restart button is to allow the player to play the game more with ease, which we absolutely want. 
@@ -116,3 +117,11 @@ With game feel, the hardest part was getting the player control to feel smooth. 
 For attacks, I gave the sword swipe attack a kind of bulb-shaped hitbox to better match the shape of the swing. To make aerial attacks feel better and easier to connect, I increased the hitbox size when the player is in the air. The biggest shortcoming of the game feel is that attack hitboxes frequently didn't connect properly for no discernible reason, though it is likely that this could be due to the hitbox flipping when players turn around while attacking.
 
 We briefly had an arena "door" that prevented the player from moving backwards beyond a certain point in phase 2, but we later removed it because the players would get confused when they suddenly couldn't move backwards.
+
+## Press Kit and Trailer
+
+Press Kit and Trailer are in the repository.
+
+The game trailer was recorded using OBS. What was recorded was the entire playthrough from beggining to beating the final boss. That footage was then edited to show parts of the game which I felt was important. The first scene shows fighting a hell hound and some rudimentary platforming which was put there as a way to pull in the audience. The second scene shows off the castle level and the skeleton enemies then we get to the boss. Some fireball action was also shown in the trailer to show that it is part of the gameplay. The final scene of the trailer is shows me beating the final boss with a fireball. This is to showcase what the player can expect from the game. 
+
+The Press Kit contains basci info on the game. It starts off with a fact section that shows off facts which I felt was relevant. For example who was in charge of which main roles or when the game was "completed". Then comes a game description section which then leads to another section that describes how to play the game. This is so that whoever is interested in covering the game will know what they are getting into. Finally the press kit ends by showing off art from the game's assets. This is to generate interest toward the game.  
