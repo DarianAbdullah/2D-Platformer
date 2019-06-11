@@ -107,7 +107,7 @@ Finally, the BossController.cs is the most complex of the enemy controllers. Mos
 Various Fallout 1 songs from the official soundtrack, found [here](https://www.youtube.com/playlist?list=PLC0C2A6BCA6040BC8). These are placeholder songs that fit the tone the game is going for, and down the line original music in the same vein would be made instead. These songs are uniquely atmospheric, creepy, yet aesthetically pleasing all at once and fit the demonic theme of the game well. The implementation for the background music is simple, the camera in each scene has an audio source with that level's song in it, which plays on awake and loops.
 
 The rest of the sound effects are sourced from [freesound.org](freesound.org), and all have creative commons licenses. 
-Here is a list of each one can be found here: https://pastebin.com/Shepv8eH
+A list of each one can be found here: https://pastebin.com/Shepv8eH
 
 The sounds are a mix of 8-bit sounds and some real life recordings. The main point is that the sound effects are simple, short, and non-intrusive. They are meant to just provide some satisfying sounds for player actions, and hurting/killing enemies. For the walking sound effects, events were placed on certain frames of the animations that called functions to play the effects, like [this example](https://github.com/DarianAbdullah/2D-Platformer/blob/02d968831f0d514bdc79cea64f70e81ef3acb534/Assets/Scripts/HeroController.cs#L237) in HeroController.cs. The rest of the sounds were added by adding multiple audio sources to the hero and enemy gameObjects, putting them all into arrays, then calling them based on their index when certain events happen.
 
