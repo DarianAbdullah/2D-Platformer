@@ -60,6 +60,38 @@ To let the player know when an enemy is dead, I set up the animation controller 
 
 To help balance out the work out, I helped create the FireSkullController script, added the transition from level 1 to level 2 by creating the script NextLevel, and helped with some gameplay design changes.
 
+## Input
+
+We decided to let the players be able to use PS4 controllers or a mouse and keyboard. Although an Xbox controller can be used too, the game was not mapped for an Xbox controller. 
+
+PS4 controls:
+* Left joystick for movement
+* X button to jump
+* Square button to attack
+* Triangle button to use a fireball
+* Options button as enter (to move through the intro scenes)
+
+Mouse and PC controls:
+* WASD or arrow keys for movement
+* Space for jump
+* Left control for attack
+* Left alt for fireball
+* Enter/return for enter
+
+# Sub-Roles #
+
+## Gameplay Testing
+A link to the results of the gameplay testing can be found [here](https://docs.google.com/document/d/1CDihAAKO6T8KLSo7eaiZjI9XjTiTHILCe1eM3EauQVI/edit?usp=sharing). 
+
+Overall, it seemed many players were slightly confused by the Xbox controllers but got used to it quickly. Unfortunately, was meant to be played with a PS4 controller or a mouse and keyboard, but due to a miscommunication no mice or PS4 controllers were available during the gameplay testing. Therefore, we cannot be too sure whether the controls still felt off, though they felt great when the team was testing.
+  
+Almost all players seemed to enjoy the art, animations, and narration. One player said the narration was unoriginal since the story is similar to John Wick, but our intent was to make a parody.
+  
+Some players noticed the hitboxes of the swords were off, and because of this we found that the sword does not hit the enemies if the player turns around right after attacking, so we addressed this issue. We also increased the hitbox size.
+
+Many players seemed to struggle with the final boss, so we made it a bit easier to defeat. However, as a result, some players were able to kill the boss too quickly, so some of the boss’s mechanics never triggered.
+  
+Many players encountered a bug with the hound; whenever the player would try to jump over the hound but instead jump on top of it, the player would get stuck over the hound, and the hound’s player chasing would glitch out, causing the hound to flip over or rotate around the map. We would not have found this bug without testing as none of the team members jumped over hounds. We managed to fix this bug. 
 
 ## Narrative Design
 
