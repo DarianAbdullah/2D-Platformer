@@ -15,7 +15,7 @@ damage and the fireballs take no resources away from you.
 
 # Main Role #
 
-## Movement/Physics
+## Movement/Physics - Cameron Brown
 
 The platformer uses rigidbodies to determine its physics when objects collide with each other, and uses either box colliders or polygon colliders to determine the exact hitbox of the object in question. Hitboxes were mostly rectangles except for the skeletons which had a pentagonal hitbox to make it easier for the player to hurdle the skeletons.
 
@@ -29,7 +29,7 @@ The Boss also has a higher mass than the player so that the player won't be able
 
 Another minor addition was pass-through platforms that you could jump up through from below.
 
-## Animation and Visuals
+## Animation and Visuals - Darian Abdullah
 
 [Gothicvania Pateron's Collection](https://ansimuz.itch.io/gothicvania-patreon-collection) and [Gothicvania Cemetery](https://ansimuz.itch.io/gothicvania-cemetery) - 
 License (both asset packs include the same license): 
@@ -60,7 +60,7 @@ To let the player know when an enemy is dead, I set up the animation controller 
 
 To help balance out the work out, I helped create the FireSkullController script, added the transition from level 1 to level 2 by creating the script NextLevel, and helped with some gameplay design changes.
 
-## Input
+## Input - Neil Natekar
 
 We decided to let the players be able to use PS4 controllers or a mouse and keyboard. Although an Xbox controller can be used too, the game was not mapped for an Xbox controller. 
 
@@ -78,7 +78,7 @@ Mouse and PC controls:
 * Left alt for fireball
 * Enter/return for enter
 
-## UI
+## UI - Heping Lin
 
 The first UI that was implmented was the HP bar. It was implemented using the UI Slider and some scripting to control it. The HP bar script references the hero in order to call the GetHealth() function from HeroController in order to update the bar. The HP bar is directly related to the heath mechanic that is implemented as a part of gameplay and is visually how the player interact with the health system when the player character isn't dead. 
 
@@ -90,7 +90,7 @@ The final UI that was implemented was the Game Won screen. This screen is tied t
 
 # Sub-Roles #
 
-## Gameplay Testing
+## Gameplay Testing - Neil Natekar
 A link to the results of the gameplay testing can be found [here](https://docs.google.com/document/d/1CDihAAKO6T8KLSo7eaiZjI9XjTiTHILCe1eM3EauQVI/edit?usp=sharing). 
 
 Overall, it seemed many players were slightly confused by the Xbox controllers but got used to it quickly. Unfortunately, was meant to be played with a PS4 controller or a mouse and keyboard, but due to a miscommunication no mice or PS4 controllers were available during the gameplay testing. Therefore, we cannot be too sure whether the controls still felt off, though they felt great when the team was testing.
@@ -103,14 +103,14 @@ Many players seemed to struggle with the final boss, so we made it a bit easier 
   
 Many players encountered a bug with the hound; whenever the player would try to jump over the hound but instead jump on top of it, the player would get stuck over the hound, and the hound’s player chasing would glitch out, causing the hound to flip over or rotate around the map. We would not have found this bug without testing as none of the team members jumped over hounds. We managed to fix this bug. 
 
-## Narrative Design
+## Narrative Design - Darian Abdullah 
 
 The narrative is first present by the five intro scenes that I created. I wanted to go with a dark story to fit with a dark, metroidvania aesthetic. I believe that the assets that I chose and the story are both dark.
 I used the background of level 1, the blood moon, in the intro cards to set the transition from the intro to the main game. As explained earlier, I thought it would be a good idea to start the player in the cemetery because
 of the mention of the main characters dead wife in the intro, and adding a giant demon boss at the end of level 2 because of the main characters goal to kill all demons.
 
 
-## Game Feel
+## Game Feel - Cameron Brown
 
 With game feel, the hardest part was getting the player control to feel smooth. I had to mess with the values for sustain speed, gravity scale, and jump strength to make basic player control feel good. Along with that, I had to make sure that collisions between the player and enemies felt fair. This is why I made the skeletons have a smaller, non-rectangular hitbox because it made it much easier for the player to hurdle the skeletons. I similarly shrank the player's hitbox so when they get hit it feels fair. For the Boss, I had to tweak the height of his hitbox as before players could shoot fireballs right over his head.
 
@@ -118,7 +118,7 @@ For attacks, I gave the sword swipe attack a kind of bulb-shaped hitbox to bette
 
 We briefly had an arena "door" that prevented the player from moving backwards beyond a certain point in phase 2, but we later removed it because the players would get confused when they suddenly couldn't move backwards.
 
-## Press Kit and Trailer
+## Press Kit and Trailer - Heping Lin
 
 Press Kit and Trailer are in the repository.
 
