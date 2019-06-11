@@ -78,6 +78,15 @@ Mouse and PC controls:
 * Left alt for fireball
 * Enter/return for enter
 
+## UI
+The first UI that was implmented was the HP bar. It was implemented using the UI Slider and some scripting to control it. The HP bar script references the hero in order to call the GetHealth() function from HeroController in order to update the bar. The HP bar is directly related to the heath mechanic that is implemented as a part of gameplay and is visually how the player interact with the health system when the player character isn't dead. 
+
+The second UI that was implemented was the game over panel that shows up when the player dies from having no more health. The gameover screen says that the player has died and gives the player a button that restarts the level that they died in. This UI is the other way for players to interact with HP or the lack of it. The restart button is to allow the player to play the game more with ease, which we absolutely want. 
+
+The 3rd UI that was implemnted was the Magic Bar that slowly fills up over time.This is similar to the HP bar except the Magic bar also had a fireball sprite attached to it that when charging is darkened and when ready to use is returned to its original color. This allows the player to interact with magic cooldown system that is within the game.
+
+The final UI that was implemented was the Game Won screen. This screen is tied to the final boss. It is a UI panel with text that appears under a certain condition. When the final boss is defeated by the player this screen will show up congratulating the player for finishing the game. This is to also give the player a sense achievement by giving the player something tangible for beating the game.
+
 # Sub-Roles #
 
 ## Gameplay Testing
